@@ -1,0 +1,9 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-query-operation-bgp-membership-filter/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/actor-query-operation-bgp-membership-filter",
+  "@type": "Module",
+  "requireName": "@comunica/actor-query-operation-bgp-membership-filter",
+  "import": [
+    "files-caqobmf:components/Actor/QueryOperation/BgpMembershipFilter.jsonld"
+  ]
+}

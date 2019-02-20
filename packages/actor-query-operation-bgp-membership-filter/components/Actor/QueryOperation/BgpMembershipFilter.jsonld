@@ -1,0 +1,68 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-query-operation-bgp-membership-filter/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-query-operation/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-query-operation-bgp-membership-filter",
+  "components": [
+    {
+      "@id": "caqobmf:Actor/QueryOperation/BgpMembershipFilter",
+      "@type": "Class",
+      "extends": "cbqo:Actor/QueryOperationTypedMediated",
+      "requireElement": "ActorQueryOperationBgpMembershipFilter",
+      "comment": "A comunica BGP Membership Filter Query Operation Actor.",
+      "parameters": [
+        {
+          "@id": "caqobmf:Actor/QueryOperation/BgpMembershipFilter/subjectUri",
+          "comment": "The URI that should be interpreted as subject URI",
+          "unique": true,
+          "required": true,
+          "default": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject" }
+        },
+        {
+          "@id": "caqobmf:Actor/QueryOperation/BgpMembershipFilter/predicateUri",
+          "comment": "The URI that should be interpreted as predicate URI",
+          "unique": true,
+          "required": true,
+          "default": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate" }
+        },
+        {
+          "@id": "caqobmf:Actor/QueryOperation/BgpMembershipFilter/objectUri",
+          "comment": "The URI that should be interpreted as object URI",
+          "unique": true,
+          "required": true,
+          "default": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#object" }
+        },
+        {
+          "@id": "caqobmf:Actor/QueryOperation/BgpMembershipFilter/graphUri",
+          "comment": "The URI that should be interpreted as graph URI",
+          "unique": true,
+          "default": { "@id": "http://www.w3.org/ns/sparql-service-description#graph" }
+        }
+      ],
+      "constructorArguments": [
+        {
+          "extends": "cbqo:Actor/QueryOperationTypedMediated/constructorArgumentsObject",
+          "fields": [
+            {
+              "keyRaw": "subjectUri",
+              "valueRawReference": "caqobmf:Actor/QueryOperation/BgpMembershipFilter/subjectUri"
+            },
+            {
+              "keyRaw": "predicateUri",
+              "valueRawReference": "caqobmf:Actor/QueryOperation/BgpMembershipFilter/predicateUri"
+            },
+            {
+              "keyRaw": "objectUri",
+              "valueRawReference": "caqobmf:Actor/QueryOperation/BgpMembershipFilter/objectUri"
+            },
+            {
+              "keyRaw": "graphUri",
+              "valueRawReference": "caqobmf:Actor/QueryOperation/BgpMembershipFilter/graphUri"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
