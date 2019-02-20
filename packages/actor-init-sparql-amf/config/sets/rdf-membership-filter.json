@@ -1,0 +1,67 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-init-sparql/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/runner/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-metadata-extract-membership/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-membership-filter/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-membership-filter-bloom/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-membership-filter-gcs/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-query-operation/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-query-operation-quadpattern-membership-filter/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-query-operation-bgp-membership-filter/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-dereference/^1.0.0/components/context.jsonld",
+
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/mediator-number/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/mediator-race/^1.0.0/components/context.jsonld",
+    {
+      "caisa": "npmd:@comunica/actor-init-sparql-amf/",
+      "files-caisa": "caisa:^1.0.0/",
+      "config-setsa": "files-caisa:config/sets/"
+    }
+  ],
+  "@id": "urn:comunica:my",
+  "actors": [
+    {
+      "@id": "config-setsa:rdf-membership-filter.json#myMembershipMetadataExtractor",
+      "@type": "ActorRdfMetadataExtractMembership",
+      "carmem:mediatorRdfMembership": {
+        "@id": "config-setsa:rdf-membership-filter.json#mediatorRdfMembership",
+        "@type": "MediatorRace",
+        "cc:Mediator/bus": { "@id": "cbrmf:Bus/RdfMembershipFilter" }
+      },
+      "carmem:mediatorRdfDereference": {
+        "@id": "config-setsa:rdf-membership-filter.json#mediatorRdfDereference",
+        "@type": "MediatorRace",
+        "cc:Mediator/bus": { "@id": "cbrd:Bus/RdfDereference" }
+      }
+    },
+    {
+      "@id": "config-setsa:rdf-membership-filter.json#myBloomFilter",
+      "@type": "ActorRdfMembershipFilterBloom"
+    },
+    {
+      "@id": "config-setsa:rdf-membership-filter.json#myGcsFilter",
+      "@type": "ActorRdfMembershipFilterGcs"
+    },
+    {
+      "@id": "config-setsa:rdf-membership-filter.json#myTripleMembershipFilterOperator",
+      "@type": "ActorQueryOperationQuadpatternMembershipFilter",
+      "cbqo:mediatorQueryOperation": {
+        "@id": "config-setsa:rdf-membership-filter.json#mediatorQueryOperation",
+        "@type": "MediatorNumberMin",
+        "field": "httpRequests",
+        "ignoreErrors": true,
+        "cc:Mediator/bus": { "@id": "cbqo:Bus/QueryOperation" }
+      }
+    },
+    {
+      "@id": "config-setsa:rdf-membership-filter.json#myBgpMembershipFilterOperator",
+      "@type": "ActorQueryOperationBgpMembershipFilter",
+      "cbqo:mediatorQueryOperation": { "@id": "config-setsa:rdf-membership-filter.json#mediatorQueryOperation" }
+    }
+  ]
+}

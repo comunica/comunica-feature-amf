@@ -1,0 +1,15 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/componentsjs/^3.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/runner/^1.0.0/components/context.jsonld",
+    {
+      "caisa": "npmd:@comunica/actor-init-sparql-amf/",
+      "files-caisa": "caisa:^1.0.0/",
+      "config-setsa": "files-caisa:config/sets/"
+    }
+  ],
+  "import": [
+    "npmd:@comunica/actor-init-sparql/^1.0.0/config/config-default.json",
+    "files-caisa:config/sets/rdf-membership-filter.json"
+  ]
+}
