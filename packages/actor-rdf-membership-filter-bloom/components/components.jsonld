@@ -1,0 +1,9 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-membership-filter-bloom/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/actor-rdf-membership-filter-bloom",
+  "@type": "Module",
+  "requireName": "@comunica/actor-rdf-membership-filter-bloom",
+  "import": [
+    "files-carmfb:components/Actor/RdfMembershipFilter/Bloom.jsonld"
+  ]
+}

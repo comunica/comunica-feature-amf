@@ -1,0 +1,30 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-membership-filter-bloom/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-membership-filter/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-rdf-membership-filter-bloom",
+  "components": [
+    {
+      "@id": "carmfb:Actor/RdfMembershipFilter/Bloom",
+      "@type": "Class",
+      "extends": "cbrmf:Actor/RdfMembershipFilterTyped",
+      "requireElement": "ActorRdfMembershipFilterBloom",
+      "comment": "A comunica Bloom RDF Membership Filter Actor.",
+      "parameters": [
+        {
+          "@id": "cbrmf:Actor/RdfMembershipFilterTyped/typeUri",
+          "defaultScoped": {
+            "defaultScope": "carmfb:Actor/RdfMembershipFilter/Bloom",
+            "defaultScopedValue": { "@id": "http://semweb.mmlab.be/ns/membership#BloomFilter" }
+          }
+        }
+      ],
+      "constructorArguments": [
+        {
+          "extends": "cbrmf:Actor/RdfMembershipFilterTyped/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}
