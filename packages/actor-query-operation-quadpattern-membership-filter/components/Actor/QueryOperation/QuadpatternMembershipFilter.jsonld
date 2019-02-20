@@ -1,0 +1,68 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-query-operation-quadpattern-membership-filter/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-query-operation/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-query-operation-quadpattern-membership-filter",
+  "components": [
+    {
+      "@id": "caqoqmf:Actor/QueryOperation/QuadpatternMembershipFilter",
+      "@type": "Class",
+      "extends": "cbqo:Actor/QueryOperationTypedMediated",
+      "requireElement": "ActorQueryOperationQuadpatternMembershipFilter",
+      "comment": "A comunica Quadpattern Membership Filter Query Operation Actor.",
+      "parameters": [
+        {
+          "@id": "caqoqmf:Actor/QueryOperation/QuadpatternMembershipFilter/subjectUri",
+          "comment": "The URI that should be interpreted as subject URI",
+          "unique": true,
+          "required": true,
+          "default": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject" }
+        },
+        {
+          "@id": "caqoqmf:Actor/QueryOperation/QuadpatternMembershipFilter/predicateUri",
+          "comment": "The URI that should be interpreted as predicate URI",
+          "unique": true,
+          "required": true,
+          "default": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate" }
+        },
+        {
+          "@id": "caqoqmf:Actor/QueryOperation/QuadpatternMembershipFilter/objectUri",
+          "comment": "The URI that should be interpreted as object URI",
+          "unique": true,
+          "required": true,
+          "default": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#object" }
+        },
+        {
+          "@id": "caqoqmf:Actor/QueryOperation/QuadpatternMembershipFilter/graphUri",
+          "comment": "The URI that should be interpreted as graph URI",
+          "unique": true,
+          "default": { "@id": "http://www.w3.org/ns/sparql-service-description#graph" }
+        }
+      ],
+      "constructorArguments": [
+        {
+          "extends": "cbqo:Actor/QueryOperationTypedMediated/constructorArgumentsObject",
+          "fields": [
+            {
+              "keyRaw": "subjectUri",
+              "valueRawReference": "caqoqmf:Actor/QueryOperation/QuadpatternMembershipFilter/subjectUri"
+            },
+            {
+              "keyRaw": "predicateUri",
+              "valueRawReference": "caqoqmf:Actor/QueryOperation/QuadpatternMembershipFilter/predicateUri"
+            },
+            {
+              "keyRaw": "objectUri",
+              "valueRawReference": "caqoqmf:Actor/QueryOperation/QuadpatternMembershipFilter/objectUri"
+            },
+            {
+              "keyRaw": "graphUri",
+              "valueRawReference": "caqoqmf:Actor/QueryOperation/QuadpatternMembershipFilter/graphUri"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

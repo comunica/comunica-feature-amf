@@ -1,0 +1,12 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld",
+    {
+      "npmd": "https://linkedsoftwaredependencies.org/bundles/npm/",
+      "caqoqmf": "npmd:@comunica/actor-query-operation-quadpattern-membership-filter/",
+      "files-caqoqmf": "caqoqmf:^1.0.0/",
+
+      "ActorQueryOperationQuadpatternMembershipFilter": "caqoqmf:Actor/QueryOperation/QuadpatternMembershipFilter"
+    }
+  ]
+}
