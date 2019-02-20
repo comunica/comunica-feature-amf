@@ -1,0 +1,9 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-membership-filter-gcs/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/actor-rdf-membership-filter-gcs",
+  "@type": "Module",
+  "requireName": "@comunica/actor-rdf-membership-filter-gcs",
+  "import": [
+    "files-carmfg:components/Actor/RdfMembershipFilter/Gcs.jsonld"
+  ]
+}

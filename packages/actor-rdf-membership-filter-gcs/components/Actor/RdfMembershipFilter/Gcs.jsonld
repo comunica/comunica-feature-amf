@@ -1,0 +1,30 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-membership-filter-gcs/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-membership-filter/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-rdf-membership-filter-gcs",
+  "components": [
+    {
+      "@id": "carmfg:Actor/RdfMembershipFilter/Gcs",
+      "@type": "Class",
+      "extends": "cbrmf:Actor/RdfMembershipFilterTyped",
+      "requireElement": "ActorRdfMembershipFilterGcs",
+      "comment": "A comunica GCS RDF Membership Filter Actor.",
+      "parameters": [
+        {
+          "@id": "cbrmf:Actor/RdfMembershipFilterTyped/typeUri",
+          "defaultScoped": {
+            "defaultScope": "carmfg:Actor/RdfMembershipFilter/Gcs",
+            "defaultScopedValue": { "@id": "http://semweb.mmlab.be/ns/membership#GCSFilter" }
+          }
+        }
+      ],
+      "constructorArguments": [
+        {
+          "extends": "cbrmf:Actor/RdfMembershipFilterTyped/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}
