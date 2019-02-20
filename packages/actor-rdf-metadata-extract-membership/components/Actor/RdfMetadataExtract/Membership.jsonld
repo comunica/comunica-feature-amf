@@ -1,0 +1,46 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-metadata-extract-membership/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-metadata-extract/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-rdf-metadata-extract-membership",
+  "components": [
+    {
+      "@id": "carmem:Actor/RdfMetadataExtract/Membership",
+      "@type": "Class",
+      "extends": "cbrme:Actor/RdfMetadataExtract",
+      "requireElement": "ActorRdfMetadataExtractMembership",
+      "comment": "A comunica Membership RDF Metadata Extract Actor.",
+      "parameters": [
+        {
+          "@id": "carmem:mediatorRdfMembership",
+          "comment": "The RDF membership filter mediator",
+          "required": true,
+          "unique": true
+        },
+        {
+          "@id": "carmem:mediatorRdfDereference",
+          "comment": "The RDF Dereference mediator",
+          "required": true,
+          "unique": true
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "carmem:Actor/RdfMetadataExtract/Membership/constructorArgumentsObject",
+          "extends": "cbrme:Actor/RdfMetadataExtract/constructorArgumentsObject",
+          "fields": [
+            {
+              "keyRaw": "mediatorRdfMembership",
+              "value": "carmem:mediatorRdfMembership"
+            },
+            {
+              "keyRaw": "mediatorRdfDereference",
+              "value": "carmem:mediatorRdfDereference"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-rdf-metadata-extract-membership/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/actor-rdf-metadata-extract-membership",
+  "@type": "Module",
+  "requireName": "@comunica/actor-rdf-metadata-extract-membership",
+  "import": [
+    "files-carmem:components/Actor/RdfMetadataExtract/Membership.jsonld"
+  ]
+}
