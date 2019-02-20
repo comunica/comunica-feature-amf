@@ -5,6 +5,15 @@
 [![Coverage Status](https://coveralls.io/repos/github/comunica/comunica-feature-amf/badge.svg?branch=master)](https://coveralls.io/github/comunica/comunica-feature-amf?branch=master)
 
 This is a monorepo that contains packages for allowing [Comunica](https://github.com/comunica/comunica) to handle approximate membership functions.
+If you want to _use_ an AMF-enabled Comunica engine, have a look at [Comunica SPARQL AMF](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-init-sparql-amf).
+
+Concretely, this monorepo adds AMF support to Comunica using the following packages:
+* [RDF Membership Filter Bus](https://github.com/comunica/comunica-feature-amf/tree/master/packages/bus-rdf-membership-filter): A bus for actors that can construct approximate membership filters.
+* [Bloom RDF Membership Filter Actor](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-rdf-membership-filter-bloom): An approximate membership filter actor for constructing Bloom filters.
+* [GCS RDF Membership Filter Actor](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-rdf-membership-filter-gcs): An approximate membership filter actor for constructing GCS filters.
+* [Membership Metadata Extractor Actor](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-rdf-metadata-extract-membership): An actor that extracts approximate membership filter metadata, and dynamically constructs membership filters.
+* [AMF Quad Pattern Actor](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-query-operation-quadpattern-membership-filter): An AMF-aware quad pattern actor.
+* [AMF BGP Actor](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-query-operation-bgp-membership-filter): An AMF-aware BGP actor.
 
 ## Development Setup
 
