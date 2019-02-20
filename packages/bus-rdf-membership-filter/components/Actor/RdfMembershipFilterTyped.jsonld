@@ -1,0 +1,34 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-membership-filter/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/bus-rdf-membership-filter",
+  "components": [
+    {
+      "@id": "cbrmf:Actor/RdfMembershipFilterTyped",
+      "@type": "AbstractClass",
+      "extends": "cbrmf:Actor/RdfMembershipFilter",
+      "requireElement": "ActorRdfMembershipFilterTyped",
+      "comment": "A comunica actor for rdf-membership-filter events with a fixed type.",
+      "parameters": [
+        {
+          "@id": "cbrmf:Actor/RdfMembershipFilterTyped/typeUri",
+          "comment": "The type URI of the filter",
+          "required": true,
+          "unique": true
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "cbrmf:Actor/RdfMembershipFilterTyped/constructorArgumentsObject",
+          "extends": "cbrmf:Actor/RdfMembershipFilter/constructorArgumentsObject",
+          "fields": {
+            "keyRaw": "typeUri",
+            "valueRawReference": "cbrmf:Actor/RdfMembershipFilterTyped/typeUri"
+          }
+        }
+      ]
+    }
+  ]
+}

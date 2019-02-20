@@ -1,0 +1,11 @@
+{
+  "@context": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-membership-filter/^1.0.0/components/context.jsonld",
+  "@id": "npmd:@comunica/bus-rdf-membership-filter",
+  "@type": "Module",
+  "requireName": "@comunica/bus-rdf-membership-filter",
+  "import": [
+    "files-cbrmf:components/Bus/RdfMembershipFilter.jsonld",
+    "files-cbrmf:components/Actor/RdfMembershipFilter.jsonld",
+    "files-cbrmf:components/Actor/RdfMembershipFilterTyped.jsonld"
+  ]
+}

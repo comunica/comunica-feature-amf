@@ -1,0 +1,32 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-rdf-membership-filter/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/bus-rdf-membership-filter",
+  "components": [
+    {
+      "@id": "cbrmf:Actor/RdfMembershipFilter",
+      "@type": "AbstractClass",
+      "extends": "cc:Actor",
+      "requireElement": "ActorRdfMembershipFilter",
+      "comment": "A comunica actor for rdf-membership-filter events.",
+      "parameters": [
+        {
+          "@id": "cc:Actor/bus",
+          "defaultScoped": {
+            "defaultScope": "cbrmf:Actor/RdfMembershipFilter",
+            "defaultScopedValue": { "@id": "cbrmf:Bus/RdfMembershipFilter" }
+          }
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "cbrmf:Actor/RdfMembershipFilter/constructorArgumentsObject",
+          "@type": "https://linkedsoftwaredependencies.org/vocabularies/object-oriented#Object",
+          "extends": "cc:Actor/constructorArgumentsObject"
+        }
+      ]
+    }
+  ]
+}
