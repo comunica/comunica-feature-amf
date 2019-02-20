@@ -8,8 +8,14 @@
     "node": ">=8.0"
   },
   "devDependencies": {
+    "@comunica/core": "^1.4.0",
+    "@comunica/bus-query-operation": "^1.4.4",
+    "@comunica/bus-rdf-dereference": "^1.4.0",
+    "@comunica/bus-rdf-metadata-extract": "^1.4.0",
+    "@comunica/bus-rdf-membership-filter": "^1.0.0",
     "@rdfjs/data-model": "^1.1.1",
     "@types/asynciterator": "^1.1.1",
+    "@types/bloem": "^0.2.0",
     "@types/bunyan": "^1.8.4",
     "@types/graphql": "^14.0.0",
     "@types/jest": "^24.0.0",
@@ -24,6 +30,7 @@
     "@types/lodash.uniq": "^4.5.3",
     "@types/lodash.values": "^4.3.3",
     "@types/lru-cache": "^4.1.0",
+    "@types/murmurhash": "^0.0.1",
     "@types/minimist": "^1.2.0",
     "@types/n3": "^1.0.4",
     "@types/node": "^11.9.0",
