@@ -85,6 +85,7 @@
     "@comunica/actor-rdf-join-nestedloop": "^1.4.4",
     "@comunica/actor-rdf-membership-filter-bloom": "^1.0.0",
     "@comunica/actor-rdf-membership-filter-gcs": "^1.0.0",
+    "@comunica/actor-rdf-metadata-extract-membership": "^1.0.0",
     "@comunica/actor-rdf-metadata-extract-hydra-controls": "^1.4.0",
     "@comunica/actor-rdf-metadata-extract-hydra-count": "^1.4.0",
     "@comunica/actor-rdf-metadata-primary-topic": "^1.4.0",

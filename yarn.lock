@@ -2535,9 +2535,9 @@ component-emitter@^1.2.1:
   integrity sha1-E3kY1teCg/ffemt8WmPhQOaUJeY=
 
 componentsjs@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/componentsjs/-/componentsjs-3.2.0.tgz#3f919845f8c8eff976a69d505aee0098f370af0c"
-  integrity sha512-ruO5GneIIYtmi+Bg0Yj1Wqe+QBAeUGVjjn+u/TBNfqYZBoCnbHZV/gq8vm9bw6vWp5QBSjywy0PNNmgV71dxmA==
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/componentsjs/-/componentsjs-3.2.1.tgz#bfec8772c20d5063d421ad289f1cd199344d3f90"
+  integrity sha512-/oBIU1aGFY/qgf/PEas554pHBaq9phkRgAASRG3yHFeYmFGmb21ab0bWPVgSYYMuchjcK4oPhZ6o6kFVICJPFA==
   dependencies:
     global-modules "^1.0.0"
     jsonld "^0.4.11"
@@ -4740,9 +4740,9 @@ jsonld@^0.4.11:
     xmldom "0.1.19"
 
 jsonld@^1.5.0:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/jsonld/-/jsonld-1.5.1.tgz#3b7a6060ba50157db92fdb550749bf600d504360"
-  integrity sha512-/PFTIAwdF5BSWmPd+XMSheus+Att8oRtJT78ZR/ZMkmZL/dLm3RtNBC9BJmDaH4SyIZEik4pvvEJ3e/MgGBF/w==
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/jsonld/-/jsonld-1.5.2.tgz#f8004a428050318883ada9d6cfd617f6476f2a2a"
+  integrity sha512-QBJ5+AWhrb2c1lb+Mo0e3md5Ew+5+qpT541IO3S0OrzotQmZ66+h0vZ/X5Tuidsoaiar1aCm6KpEnFXd4ArMMg==
   dependencies:
     rdf-canonize "^1.0.1"
     request "^2.88.0"
@@ -5376,9 +5376,9 @@ n3@^0.9.1:
   integrity sha1-QwtUfVjcc4FAjEV4TdgFgXGQOTI=
 
 n3@^1.0.0:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/n3/-/n3-1.0.3.tgz#781e5de7965d3e52955ac9b970a438bb36e11b9a"
-  integrity sha512-IdcCNqb/1gj9fX63hoVEn3/Z1u9iLJiYLSpesmqT3+5UrxcYG5YldUP6T2okNRZKzyVdqz+I0PExGkWkz9gcZw==
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/n3/-/n3-1.0.4.tgz#6c7d67e1cf307e1e5e37d9d040bdd7d15b9108bd"
+  integrity sha512-iMHI7n3OsmMsUf6u9un6f8TCPgN1Zs6uKKcXrpTFUNXaswaOFk3H2/YuzuLE4T5Mhd+1haXAuufBFmsbRaULzw==
 
 nan@^2.9.2:
   version "2.12.1"
@@ -5588,9 +5588,9 @@ npm-lifecycle@^2.1.0:
     validate-npm-package-name "^3.0.0"
 
 npm-packlist@^1.1.12, npm-packlist@^1.1.6:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/npm-packlist/-/npm-packlist-1.4.0.tgz#b2c0867af2a396e0734343d2b6b3f7934db935f2"
-  integrity sha512-zCAmKshsFx2MhOsXdYmZd1DO2d8ts80kVASSWX6lv8654i0edCnNCoEqwVsMygl1BSroCPW6Zh5Dcw+ann775g==
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/npm-packlist/-/npm-packlist-1.4.1.tgz#19064cdf988da80ea3cee45533879d90192bbfbc"
+  integrity sha512-+TcdO7HJJ8peiiYhvPxsEDhF3PJFGUGRcFsGve3vxvxdcpO2Z4Z7rkosRM0kWj6LfbK/P0gu3dzk5RU1ffvFcw==
   dependencies:
     ignore-walk "^3.0.1"
     npm-bundled "^1.0.1"
