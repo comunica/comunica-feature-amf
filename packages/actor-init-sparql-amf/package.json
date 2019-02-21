@@ -23,6 +23,7 @@
   "license": "MIT",
   "bin": {
     "comunica-sparql-amf": "./bin/query.js",
+    "comunica-sparql-amf-http": "./bin/http.js",
     "comunica-dynamic-sparql-amf": "./bin/query-dynamic.js"
   },
   "bugs": {

@@ -25,3 +25,7 @@ Show the help with all options:
 ```bash
 $ comunica-sparql-amf --help
 ```
+
+Just like [Comunica SPARQL](https://github.com/comunica/comunica/tree/master/packages/actor-init-sparql),
+a [dynamic variant](https://github.com/comunica/comunica/tree/master/packages/actor-init-sparql#usage-from-the-command-line) (`comunica-dynamic-sparql-amf`) also exists,
+and [a script for starting a HTTP service](https://github.com/comunica/comunica/tree/master/packages/actor-init-sparql#usage-from-http) (`comunica-sparql-amf-http`).
