@@ -8,6 +8,11 @@
     "node": ">=8.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-async-to-generator": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
     "@comunica/core": "^1.4.0",
     "@comunica/bus-query-operation": "^1.4.4",
     "@comunica/bus-rdf-dereference": "^1.4.0",
@@ -41,6 +46,7 @@
     "@types/xml": "^1.0.2",
     "arrayify-stream": "^1.0.0",
     "asynciterator": "^2.0.1",
+    "babel-loader": "^8.0.2",
     "coveralls": "^3.0.0",
     "immutable": "^3.8.2",
     "isomorphic-fetch": "^2.2.1",
@@ -58,7 +64,10 @@
     "ts-jest": "^24.0.0",
     "tslint": "^5.7.0",
     "tslint-eslint-rules": "^5.1.0",
-    "typescript": "^3.1.6"
+    "typescript": "^3.1.6",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.1.2"
   },
   "pre-commit": [
     "build",
