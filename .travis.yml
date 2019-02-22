@@ -19,7 +19,6 @@ after_script: greenkeeper-lockfile-upload
 script:
   - yarn run lint
   - yarn run test-ci
-  - lerna run browser
   - lerna run spec
   - if [ "$DOCKER_BUILD" = "true" ]; then ( sh -c "`curl -fsSl https://raw.githubusercontent.com/comunica/comunica-lerna-docker/master/install.sh`" && ~/.comunica-lerna-docker/bin/comunica-lerna-docker build ) fi
 after_success:
