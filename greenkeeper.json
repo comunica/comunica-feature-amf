@@ -7,6 +7,7 @@
     },
     "allPackages": {
       "packages": [
+        "packages/actor-init-sparql-amf/package.json",
         "packages/actor-query-operation-bgp-membership-filter/package.json",
         "packages/actor-query-operation-quadpattern-membership-filter/package.json",
         "packages/actor-rdf-membership-filter-bloom/package.json",
