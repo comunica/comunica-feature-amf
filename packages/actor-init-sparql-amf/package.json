@@ -41,7 +41,7 @@
     "engine-default.js"
   ],
   "dependencies": {
-    "@comunica/actor-init-sparql": "^1.6.0",
+    "@comunica/actor-init-sparql": "^1.6.1",
     "@comunica/actor-query-operation-bgp-membership-filter": "^1.0.0",
     "@comunica/actor-query-operation-quadpattern-membership-filter": "^1.0.0",
     "@comunica/actor-rdf-membership-filter-bloom": "^1.0.0",
