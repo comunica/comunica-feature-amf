@@ -38,6 +38,13 @@
           "comment": "The URI that should be interpreted as graph URI",
           "unique": true,
           "default": { "@id": "http://www.w3.org/ns/sparql-service-description#graph" }
+        },
+        {
+          "@id": "caqobmf:Actor/QueryOperation/BgpMembershipFilter/minimumTotalItemsPatternsFactor",
+          "comment": "The factor that will be multiplied by the number of BGP patterns to determine the minimal total items threshold for this actor to work.",
+          "unique": true,
+          "default": 1,
+          "range": "xsd:int"
         }
       ],
       "constructorArguments": [
@@ -59,6 +66,10 @@
             {
               "keyRaw": "graphUri",
               "valueRawReference": "caqobmf:Actor/QueryOperation/BgpMembershipFilter/graphUri"
+            },
+            {
+              "keyRaw": "minimumTotalItemsPatternsFactor",
+              "value": "caqobmf:Actor/QueryOperation/BgpMembershipFilter/minimumTotalItemsPatternsFactor"
             }
           ]
         }

@@ -1,5 +1,5 @@
 import {ActorQueryOperation, Bindings, IActorQueryOperationOutputBindings,
-  KEY_CONTEXT_BGP_PARENTMETADATA} from "@comunica/bus-query-operation";
+  KEY_CONTEXT_BGP_CURRENTMETADATA, KEY_CONTEXT_BGP_PARENTMETADATA} from "@comunica/bus-query-operation";
 import {ActionContext, Bus} from "@comunica/core";
 import {literal, namedNode} from "@rdfjs/data-model";
 import {ArrayIterator} from "asynciterator";
@@ -10,6 +10,7 @@ const subjectUri = 'http://example.org/s';
 const predicateUri = 'http://example.org/p';
 const objectUri = 'http://example.org/o';
 const graphUri = 'http://example.org/g';
+const minimumTotalItemsPatternsFactor = 1;
 
 describe('ActorQueryOperationBgpMembershipFilter', () => {
   let bus;
@@ -54,7 +55,16 @@ describe('ActorQueryOperationBgpMembershipFilter', () => {
 
     beforeEach(() => {
       actor = new ActorQueryOperationBgpMembershipFilter(
-        { name: 'actor', bus, mediatorQueryOperation, subjectUri, predicateUri, objectUri, graphUri });
+        {
+          bus,
+          graphUri,
+          mediatorQueryOperation,
+          minimumTotalItemsPatternsFactor,
+          name: 'actor',
+          objectUri,
+          predicateUri,
+          subjectUri,
+        });
     });
 
     it('should have a termUriMapper object', () => {
@@ -80,6 +90,9 @@ describe('ActorQueryOperationBgpMembershipFilter', () => {
         type: 'bgp',
       };
       const context = ActionContext({
+        [KEY_CONTEXT_BGP_CURRENTMETADATA]: {
+          totalItems: 10,
+        },
         [KEY_CONTEXT_BGP_PARENTMETADATA]: [{
           approximateMembershipFilters: [
             {
@@ -95,7 +108,37 @@ describe('ActorQueryOperationBgpMembershipFilter', () => {
       return expect(actor.test(op)).resolves.toBeTruthy();
     });
 
-    it('should test on a BGP without filters', () => {
+    it('should test on a BGP and membership filters with empty current metadata', () => {
+      const operation = {
+        patterns: [
+          {
+            graph: namedNode('g'),
+            object: namedNode('o'),
+            predicate: namedNode('p'),
+            subject: namedNode('s'),
+            type: 'pattern',
+          },
+        ],
+        type: 'bgp',
+      };
+      const context = ActionContext({
+        [KEY_CONTEXT_BGP_CURRENTMETADATA]: {},
+        [KEY_CONTEXT_BGP_PARENTMETADATA]: [{
+          approximateMembershipFilters: [
+            {
+              filter: {
+                filter: () => true,
+              },
+              variable: subjectUri,
+            },
+          ],
+        }],
+      });
+      const op = { operation, context };
+      return expect(actor.test(op)).resolves.toBeTruthy();
+    });
+
+    it('should not test on a BGP without current metadata', () => {
       const operation = {
         patterns: [
           {
@@ -110,15 +153,22 @@ describe('ActorQueryOperationBgpMembershipFilter', () => {
       };
       const context = ActionContext({
         [KEY_CONTEXT_BGP_PARENTMETADATA]: [{
-          approximateMembershipFilters: [],
+          approximateMembershipFilters: [
+            {
+              filter: {
+                filter: () => true,
+              },
+              variable: subjectUri,
+            },
+          ],
         }],
       });
       const op = { operation, context };
-      return expect(actor.test(op)).rejects
-        .toThrow(new Error('Actor actor requires approximate membership filter metadata.'));
+      return expect(actor.test(op)).rejects.toThrow(
+        new Error('Actor actor requires a context with an entry @comunica/bus-query-operation:bgpCurrentMetadata.'));
     });
 
-    it('should test on a BGP with no filters entry', () => {
+    it('should not test on a BGP with current metadata with low count', () => {
       const operation = {
         patterns: [
           {
@@ -132,14 +182,26 @@ describe('ActorQueryOperationBgpMembershipFilter', () => {
         type: 'bgp',
       };
       const context = ActionContext({
-        [KEY_CONTEXT_BGP_PARENTMETADATA]: [{}],
+        [KEY_CONTEXT_BGP_CURRENTMETADATA]: {
+          totalItems: 1,
+        },
+        [KEY_CONTEXT_BGP_PARENTMETADATA]: [{
+          approximateMembershipFilters: [
+            {
+              filter: {
+                filter: () => true,
+              },
+              variable: subjectUri,
+            },
+          ],
+        }],
       });
       const op = { operation, context };
-      return expect(actor.test(op)).rejects
-        .toThrow(new Error('Actor actor requires approximate membership filter metadata.'));
+      return expect(actor.test(op)).rejects.toThrow(
+        new Error('Actor actor is skipped because the total count is too low.'));
     });
 
-    it('should test on a BGP without metadata', () => {
+    it('should not test on a BGP without filters', () => {
       const operation = {
         patterns: [
           {
@@ -152,7 +214,61 @@ describe('ActorQueryOperationBgpMembershipFilter', () => {
         ],
         type: 'bgp',
       };
-      const context = ActionContext({});
+      const context = ActionContext({
+        [KEY_CONTEXT_BGP_CURRENTMETADATA]: {
+          totalItems: 10,
+        },
+        [KEY_CONTEXT_BGP_PARENTMETADATA]: [{
+          approximateMembershipFilters: [],
+        }],
+      });
+      const op = { operation, context };
+      return expect(actor.test(op)).rejects
+        .toThrow(new Error('Actor actor requires approximate membership filter metadata.'));
+    });
+
+    it('should not test on a BGP with no filters entry', () => {
+      const operation = {
+        patterns: [
+          {
+            graph: namedNode('g'),
+            object: namedNode('o'),
+            predicate: namedNode('p'),
+            subject: namedNode('s'),
+            type: 'pattern',
+          },
+        ],
+        type: 'bgp',
+      };
+      const context = ActionContext({
+        [KEY_CONTEXT_BGP_CURRENTMETADATA]: {
+          totalItems: 10,
+        },
+        [KEY_CONTEXT_BGP_PARENTMETADATA]: [{}],
+      });
+      const op = { operation, context };
+      return expect(actor.test(op)).rejects
+        .toThrow(new Error('Actor actor requires approximate membership filter metadata.'));
+    });
+
+    it('should not test on a BGP without parent metadata', () => {
+      const operation = {
+        patterns: [
+          {
+            graph: namedNode('g'),
+            object: namedNode('o'),
+            predicate: namedNode('p'),
+            subject: namedNode('s'),
+            type: 'pattern',
+          },
+        ],
+        type: 'bgp',
+      };
+      const context = ActionContext({
+        [KEY_CONTEXT_BGP_CURRENTMETADATA]: {
+          totalItems: 10,
+        },
+      });
       const op = { operation, context };
       return expect(actor.test(op)).rejects.toThrow(
         new Error('Actor actor requires a context with an entry @comunica/bus-query-operation:bgpParentMetadata.'));
@@ -178,6 +294,9 @@ describe('ActorQueryOperationBgpMembershipFilter', () => {
         type: 'bgp',
       };
       const context = ActionContext({
+        [KEY_CONTEXT_BGP_CURRENTMETADATA]: {
+          totalItems: 10,
+        },
         [KEY_CONTEXT_BGP_PARENTMETADATA]: [{
           approximateMembershipFilters: [
             {
@@ -215,6 +334,9 @@ describe('ActorQueryOperationBgpMembershipFilter', () => {
         type: 'bgp',
       };
       const context = ActionContext({
+        [KEY_CONTEXT_BGP_CURRENTMETADATA]: {
+          totalItems: 10,
+        },
         [KEY_CONTEXT_BGP_PARENTMETADATA]: [{
           approximateMembershipFilters: [
             {
@@ -247,6 +369,9 @@ describe('ActorQueryOperationBgpMembershipFilter', () => {
         type: 'bgp',
       };
       const context = ActionContext({
+        [KEY_CONTEXT_BGP_CURRENTMETADATA]: {
+          totalItems: 10,
+        },
         [KEY_CONTEXT_BGP_PARENTMETADATA]: [{
           approximateMembershipFilters: [
             {
@@ -292,6 +417,9 @@ describe('ActorQueryOperationBgpMembershipFilter', () => {
         type: 'bgp',
       };
       const context = ActionContext({
+        [KEY_CONTEXT_BGP_CURRENTMETADATA]: {
+          totalItems: 10,
+        },
         [KEY_CONTEXT_BGP_PARENTMETADATA]: [
           {
             approximateMembershipFilters: [
