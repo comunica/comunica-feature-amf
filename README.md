@@ -13,7 +13,8 @@ Concretely, this monorepo adds AMF support to Comunica using the following packa
 * [GCS RDF Membership Filter Actor](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-rdf-membership-filter-gcs): An approximate membership filter actor for constructing GCS filters.
 * [Membership Metadata Extractor Actor](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-rdf-metadata-extract-membership): An actor that extracts approximate membership filter metadata, and dynamically constructs membership filters.
 * [AMF Quad Pattern Actor](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-query-operation-quadpattern-membership-filter): An AMF-aware quad pattern actor.
-* [AMF BGP Actor](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-query-operation-bgp-membership-filter): An AMF-aware BGP actor.
+* [AMF BGP Actor](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-query-operation-bgp-membership-filter): An AMF-aware BGP actor that applies filters on separate patterns.
+* [Combined AMF BGP Actor](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-query-operation-bgp-membership-filter): An AMF-aware BGP actor that combines filters and executes them on all relevant patterns to achieve a higher filtering yield.
 
 ## Development Setup
 

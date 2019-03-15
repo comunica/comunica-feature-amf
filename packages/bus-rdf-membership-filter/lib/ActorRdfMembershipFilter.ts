@@ -50,4 +50,12 @@ export interface IApproximateMembershipFilter {
    * @return {boolean} True if the term is probably in the dataset, false if the term is definitely not in the dataset.
    */
   filter(term: RDF.Term, context: ActionContext): Promise<boolean>;
+
+  /**
+   * Calling this method will make sure that this filter will become fully loaded.
+   * This is useful when the filter is lazily constructed.
+   * @param {ActionContext} context The action context.
+   * @return {Promise<void>} A promise resolving when the filter has been fully loaded.
+   */
+  prefetch?(context: ActionContext): Promise<any>;
 }

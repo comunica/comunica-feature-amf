@@ -1,0 +1,12 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/core/^1.0.0/components/context.jsonld",
+    {
+      "npmd": "https://linkedsoftwaredependencies.org/bundles/npm/",
+      "caqobmfc": "npmd:@comunica/actor-query-operation-bgp-membership-filter-combined/",
+      "files-caqobmfc": "caqobmfc:^1.0.0/",
+
+      "ActorQueryOperationBgpMembershipFilterCombined": "caqobmfc:Actor/QueryOperation/BgpMembershipFilterCombined"
+    }
+  ]
+}

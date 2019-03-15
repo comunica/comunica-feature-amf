@@ -32,16 +32,20 @@ export class ApproximateMembershipFilterLazy implements IApproximateMembershipFi
   }
 
   public async filter(term: RDF.Term, context: ActionContext): Promise<boolean> {
+    return (await this.prefetch(context)).filter(term, context);
+  }
+
+  public prefetch(context: ActionContext): Promise<IApproximateMembershipFilter> {
     if (!this.filterInstance) {
       this.filterInstance = new Promise<IApproximateMembershipFilter>(async (resolve, reject) => {
-        const { quads } = await this.mediatorRdfDereference.mediate({ url: this.filterUri, context });
+        const {quads} = await this.mediatorRdfDereference.mediate({ url: this.filterUri, context });
         const filterProps: any = {};
-        const filters = { [this.filterUri]: filterProps };
+        const filters = {[this.filterUri]: filterProps};
         await ActorRdfMetadataExtractMembership.detectMembershipProperties(quads, filters);
         if (filterProps[ActorRdfMetadataExtractMembership.RDF_TYPE]) {
           try {
             const { filter } = await this.mediatorRdfMembership
-              .mediate({ typeUri: filterProps[ActorRdfMetadataExtractMembership.RDF_TYPE], properties: filterProps });
+              .mediate({typeUri: filterProps[ActorRdfMetadataExtractMembership.RDF_TYPE], properties: filterProps});
             resolve(filter);
           } catch (e) {
             reject(e);
@@ -51,7 +55,8 @@ export class ApproximateMembershipFilterLazy implements IApproximateMembershipFi
         }
       });
     }
-    return (await this.filterInstance).filter(term, context);
+
+    return this.filterInstance;
   }
 
 }

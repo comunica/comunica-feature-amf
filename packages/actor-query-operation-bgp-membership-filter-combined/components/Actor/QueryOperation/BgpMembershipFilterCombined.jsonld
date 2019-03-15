@@ -1,0 +1,79 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-query-operation-bgp-membership-filter-combined/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/bus-query-operation/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@comunica/actor-query-operation-bgp-membership-filter-combined",
+  "components": [
+    {
+      "@id": "caqobmfc:Actor/QueryOperation/BgpMembershipFilterCombined",
+      "@type": "Class",
+      "extends": "cbqo:Actor/QueryOperationTypedMediated",
+      "requireElement": "ActorQueryOperationBgpMembershipFilterCombined",
+      "comment": "A comunica BGP Membership Filter Combined Query Operation Actor.",
+      "parameters": [
+        {
+          "@id": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/subjectUri",
+          "comment": "The URI that should be interpreted as subject URI",
+          "unique": true,
+          "required": true,
+          "default": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject" }
+        },
+        {
+          "@id": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/predicateUri",
+          "comment": "The URI that should be interpreted as predicate URI",
+          "unique": true,
+          "required": true,
+          "default": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate" }
+        },
+        {
+          "@id": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/objectUri",
+          "comment": "The URI that should be interpreted as object URI",
+          "unique": true,
+          "required": true,
+          "default": { "@id": "http://www.w3.org/1999/02/22-rdf-syntax-ns#object" }
+        },
+        {
+          "@id": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/graphUri",
+          "comment": "The URI that should be interpreted as graph URI",
+          "unique": true,
+          "default": { "@id": "http://www.w3.org/ns/sparql-service-description#graph" }
+        },
+        {
+          "@id": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/minimumTotalItemsPatternsFactor",
+          "comment": "The factor that will be multiplied by the number of BGP patterns to determine the minimal total items threshold for this actor to work.",
+          "unique": true,
+          "default": 1,
+          "range": "xsd:int"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "extends": "cbqo:Actor/QueryOperationTypedMediated/constructorArgumentsObject",
+          "fields": [
+            {
+              "keyRaw": "subjectUri",
+              "valueRawReference": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/subjectUri"
+            },
+            {
+              "keyRaw": "predicateUri",
+              "valueRawReference": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/predicateUri"
+            },
+            {
+              "keyRaw": "objectUri",
+              "valueRawReference": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/objectUri"
+            },
+            {
+              "keyRaw": "graphUri",
+              "valueRawReference": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/graphUri"
+            },
+            {
+              "keyRaw": "minimumTotalItemsPatternsFactor",
+              "value": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/minimumTotalItemsPatternsFactor"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
