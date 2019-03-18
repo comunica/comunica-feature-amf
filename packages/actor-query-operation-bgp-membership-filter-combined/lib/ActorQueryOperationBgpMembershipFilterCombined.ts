@@ -21,7 +21,8 @@ export class ActorQueryOperationBgpMembershipFilterCombined extends ActorQueryOp
   public readonly predicateUri: string;
   public readonly objectUri: string;
   public readonly graphUri?: string;
-  public readonly minimumTotalItemsPatternsFactor: number;
+  public readonly plainRequestSize: number;
+  public readonly amfTripleSize: number;
 
   public readonly termUriMapper: {[termUri: string]: QuadTermName};
 
@@ -35,14 +36,17 @@ export class ActorQueryOperationBgpMembershipFilterCombined extends ActorQueryOp
     };
   }
 
+  public isAmfEffective(bindings: number, patternMetadatas: any[]): boolean {
+    const joinRequestData: number = (bindings * patternMetadatas.length) * this.plainRequestSize;
+    const totalAmfsSize: number = patternMetadatas.reduce(
+      (acc, metadata) => acc + ('totalItems' in metadata ? metadata.totalItems : Infinity), 0) * this.amfTripleSize;
+
+    return totalAmfsSize < joinRequestData;
+  }
+
   public async testOperation(pattern: Algebra.Bgp, context: ActionContext): Promise<IActorTest> {
     if (!context || !context.has(KEY_CONTEXT_BGP_CURRENTMETADATA)) {
       throw new Error(`Actor ${this.name} requires a context with an entry ${KEY_CONTEXT_BGP_CURRENTMETADATA}.`);
-    }
-    const currentMetadata: any = context.get(KEY_CONTEXT_BGP_CURRENTMETADATA);
-    if (currentMetadata.totalItems
-      && currentMetadata.totalItems <= pattern.patterns.length * this.minimumTotalItemsPatternsFactor) {
-      throw new Error(`Actor ${this.name} is skipped because the total count is too low.`);
     }
     if (!context.has(KEY_CONTEXT_BGP_PARENTMETADATA)) {
       throw new Error(`Actor ${this.name} requires a context with an entry ${KEY_CONTEXT_BGP_PARENTMETADATA}.`);
@@ -54,6 +58,10 @@ export class ActorQueryOperationBgpMembershipFilterCombined extends ActorQueryOp
     if (!metadatas || !metadatas.length || !metadatas.some(
       (metadata) => metadata.approximateMembershipFilters && metadata.approximateMembershipFilters.length)) {
       throw new Error(`Actor ${this.name} requires approximate membership filter metadata.`);
+    }
+    const currentMetadata: any = context.get(KEY_CONTEXT_BGP_CURRENTMETADATA);
+    if (currentMetadata.totalItems && !this.isAmfEffective(currentMetadata.totalItems, metadatas)) {
+      throw new Error(`Actor ${this.name} is skipped because the AMF would be ineffective.`);
     }
     return true;
   }
@@ -135,5 +143,6 @@ export interface IActorQueryOperationBgpMembershipFilterCombinedArgs extends IAc
   predicateUri: string;
   objectUri: string;
   graphUri?: string;
-  minimumTotalItemsPatternsFactor: number;
+  plainRequestSize: number;
+  amfTripleSize: number;
 }

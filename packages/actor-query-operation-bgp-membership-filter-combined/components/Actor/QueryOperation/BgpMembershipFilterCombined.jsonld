@@ -40,10 +40,17 @@
           "default": { "@id": "http://www.w3.org/ns/sparql-service-description#graph" }
         },
         {
-          "@id": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/minimumTotalItemsPatternsFactor",
-          "comment": "The factor that will be multiplied by the number of BGP patterns to determine the minimal total items threshold for this actor to work.",
+          "@id": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/plainRequestSize",
+          "comment": "The estimated size in bytes of a membership request. Used for the application heuristic of this actor.",
           "unique": true,
-          "default": 1,
+          "default": 1000,
+          "range": "xsd:int"
+        },
+        {
+          "@id": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/amfTripleSize",
+          "comment": "The esimated size in bytes of a triple in an AMF. Used for the application heuristic of this actor. Set to 0 to disable this heuristic.",
+          "unique": true,
+          "default": 2,
           "range": "xsd:int"
         }
       ],
@@ -68,8 +75,12 @@
               "valueRawReference": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/graphUri"
             },
             {
-              "keyRaw": "minimumTotalItemsPatternsFactor",
-              "value": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/minimumTotalItemsPatternsFactor"
+              "keyRaw": "plainRequestSize",
+              "value": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/plainRequestSize"
+            },
+            {
+              "keyRaw": "amfTripleSize",
+              "value": "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/amfTripleSize"
             }
           ]
         }

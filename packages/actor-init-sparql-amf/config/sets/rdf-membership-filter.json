@@ -62,6 +62,8 @@
     {
       "@id": "config-setsa:rdf-membership-filter.json#myBgpMembershipFilterOperatorCombined",
       "@type": "ActorQueryOperationBgpMembershipFilterCombined",
+      "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/plainRequestSize": 1000,
+      "caqobmfc:Actor/QueryOperation/BgpMembershipFilter/amfTripleSize": 2,
       "cbqo:mediatorQueryOperation": { "@id": "config-setsa:rdf-membership-filter.json#mediatorQueryOperation" }
     }
   ]

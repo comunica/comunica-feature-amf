@@ -11,7 +11,8 @@ const subjectUri = 'http://example.org/s';
 const predicateUri = 'http://example.org/p';
 const objectUri = 'http://example.org/o';
 const graphUri = 'http://example.org/g';
-const minimumTotalItemsPatternsFactor = 1;
+const plainRequestSize = 1000;
+const amfTripleSize = 2;
 
 describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
   let bus;
@@ -58,12 +59,13 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
     beforeEach(() => {
       actor = new ActorQueryOperationBgpMembershipFilterCombined(
         {
+          amfTripleSize,
           bus,
           graphUri,
           mediatorQueryOperation,
-          minimumTotalItemsPatternsFactor,
           name: 'actor',
           objectUri,
+          plainRequestSize,
           predicateUri,
           subjectUri,
         });
@@ -104,6 +106,7 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
               variable: subjectUri,
             },
           ],
+          totalItems: 10,
         }],
         [KEY_CONTEXT_BGP_PATTERNBINDINGS]: [
           {
@@ -185,7 +188,46 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
         new Error('Actor actor requires a context with an entry @comunica/bus-query-operation:bgpCurrentMetadata.'));
     });
 
-    it('should not test on a BGP with current metadata with low count', () => {
+    it('should not test on a BGP with current metadata with low count and very high remaining pattern count', () => {
+      const operation = {
+        patterns: [
+          {
+            graph: namedNode('g'),
+            object: namedNode('o'),
+            predicate: namedNode('p'),
+            subject: namedNode('s'),
+            type: 'pattern',
+          },
+        ],
+        type: 'bgp',
+      };
+      const context = ActionContext({
+        [KEY_CONTEXT_BGP_CURRENTMETADATA]: {
+          totalItems: 1,
+        },
+        [KEY_CONTEXT_BGP_PARENTMETADATA]: [{
+          approximateMembershipFilters: [
+            {
+              filter: {
+                filter: () => true,
+              },
+              variable: subjectUri,
+            },
+          ],
+          totalItems: 100000,
+        }],
+        [KEY_CONTEXT_BGP_PATTERNBINDINGS]: [
+          {
+            subject: variable('s'),
+          },
+        ],
+      });
+      const op = { operation, context };
+      return expect(actor.test(op)).rejects.toThrow(
+        new Error('Actor actor is skipped because the AMF would be ineffective.'));
+    });
+
+    it('should not test on a BGP with current metadata with low count and unknown remaining pattern count', () => {
       const operation = {
         patterns: [
           {
@@ -220,7 +262,7 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
       });
       const op = { operation, context };
       return expect(actor.test(op)).rejects.toThrow(
-        new Error('Actor actor is skipped because the total count is too low.'));
+        new Error('Actor actor is skipped because the AMF would be ineffective.'));
     });
 
     it('should not test on a BGP without filters', () => {
