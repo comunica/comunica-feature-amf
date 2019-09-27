@@ -35,7 +35,7 @@
     "index.js"
   ],
   "peerDependencies": {
-    "@comunica/core": "^1.6.3",
+    "@comunica/core": "^1.9.2",
     "@comunica/bus-query-operation": "^1.6.3"
   },
   "devDependencies": {
