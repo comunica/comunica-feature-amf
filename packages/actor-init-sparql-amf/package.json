@@ -49,7 +49,7 @@
     "@comunica/actor-rdf-membership-filter-gcs": "^1.0.0",
     "@comunica/actor-rdf-metadata-extract-membership": "^1.0.0",
     "@comunica/bus-rdf-membership-filter": "^1.0.0",
-    "@comunica/runner": "^1.6.0",
+    "@comunica/runner": "^1.9.2",
     "@comunica/runner-cli": "^1.6.0"
   },
   "scripts": {
