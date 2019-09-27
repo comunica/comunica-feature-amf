@@ -1399,10 +1399,19 @@
   dependencies:
     "@comunica/runner" "^1.6.3"
 
-"@comunica/runner@^1.6.0", "@comunica/runner@^1.6.3":
+"@comunica/runner@^1.6.3":
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/@comunica/runner/-/runner-1.6.3.tgz#c0fcf44a379ba38a00655802769a42db5122d8a4"
   integrity sha512-h7E2yh1djspaM8tTU9tqmjIdrPdfShgPRkUvUmt6KKdpgRyYe3eGVUNNGASlhcROSYLXv86vIVYHlcIZ51WVWw==
+  dependencies:
+    componentsjs "^3.2.1"
+    lodash.assign "^4.2.0"
+    lodash.defaults "^4.2.0"
+
+"@comunica/runner@^1.9.2":
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/@comunica/runner/-/runner-1.9.2.tgz#f06c74f55d08556d47a9184859511d0bcfbdc6f2"
+  integrity sha512-r1J5UkaFTvynn9lLsD/38LFLhsLLj9FJur/4rz1MoYpdoHYpg/vbQrvFltG52nzvcj35A6WkoshCMJ++D3VmcQ==
   dependencies:
     componentsjs "^3.2.1"
     lodash.assign "^4.2.0"
