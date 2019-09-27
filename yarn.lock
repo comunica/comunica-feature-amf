@@ -1348,6 +1348,14 @@
     immutable "^3.8.2"
     lodash.assign "^4.2.0"
 
+"@comunica/core@^1.9.2":
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/@comunica/core/-/core-1.9.2.tgz#2d8d4255bd4dd56b3719c79163cb65aad42391b2"
+  integrity sha512-bsXMUnuO/5EyhVmbNehlL8+wkAGRM9vAqp0cAjhQDyT832BJcGB7Cr1Ufdzr5ZxOuG/Z0ydkTbcLS8JwE/hrcg==
+  dependencies:
+    immutable "^3.8.2"
+    lodash.assign "^4.2.0"
+
 "@comunica/logger-pretty@^1.6.3":
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/@comunica/logger-pretty/-/logger-pretty-1.6.3.tgz#cfb935eaa3c3938bb20bd2f2894ade6fc9706558"
