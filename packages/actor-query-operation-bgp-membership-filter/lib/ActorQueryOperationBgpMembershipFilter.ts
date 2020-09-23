@@ -1,10 +1,11 @@
-import {ActorQueryOperationTypedMediated, IActorQueryOperationOutput, IActorQueryOperationOutputBindings,
-  IActorQueryOperationTypedMediatedArgs, KEY_CONTEXT_BGP_CURRENTMETADATA,
-  KEY_CONTEXT_BGP_PARENTMETADATA} from "@comunica/bus-query-operation";
-import {ActionContext, IActorTest} from "@comunica/core";
-import {EmptyIterator} from "asynciterator";
-import {QuadTermName} from "rdf-terms";
-import {Algebra} from "sparqlalgebrajs";
+import type { IActorQueryOperationOutput, IActorQueryOperationOutputBindings,
+  IActorQueryOperationTypedMediatedArgs } from '@comunica/bus-query-operation';
+import { ActorQueryOperationTypedMediated, KEY_CONTEXT_BGP_CURRENTMETADATA,
+  KEY_CONTEXT_BGP_PARENTMETADATA } from '@comunica/bus-query-operation';
+import type { ActionContext, IActorTest } from '@comunica/core';
+import { ArrayIterator } from 'asynciterator';
+import type { QuadTermName } from 'rdf-terms';
+import type { Algebra } from 'sparqlalgebrajs';
 
 /**
  * A comunica BGP Membership Filter Query Operation Actor.
@@ -12,16 +13,15 @@ import {Algebra} from "sparqlalgebrajs";
  * based on any available approximate membership filters.
  */
 export class ActorQueryOperationBgpMembershipFilter extends ActorQueryOperationTypedMediated<Algebra.Bgp> {
-
   public readonly subjectUri: string;
   public readonly predicateUri: string;
   public readonly objectUri: string;
-  public readonly graphUri?: string;
+  public readonly graphUri: string;
   public readonly minimumTotalItemsPatternsFactor: number;
 
   public readonly termUriMapper: {[termUri: string]: QuadTermName};
 
-  constructor(args: IActorQueryOperationBgpMembershipFilterArgs) {
+  public constructor(args: IActorQueryOperationBgpMembershipFilterArgs) {
     super(args, 'bgp');
     this.termUriMapper = {
       [this.subjectUri]: 'subject',
@@ -36,29 +36,29 @@ export class ActorQueryOperationBgpMembershipFilter extends ActorQueryOperationT
       throw new Error(`Actor ${this.name} requires a context with an entry ${KEY_CONTEXT_BGP_CURRENTMETADATA}.`);
     }
     const currentMetadata: any = context.get(KEY_CONTEXT_BGP_CURRENTMETADATA);
-    if (currentMetadata.totalItems
-      && currentMetadata.totalItems <= pattern.patterns.length * this.minimumTotalItemsPatternsFactor) {
+    if (currentMetadata.totalItems &&
+      currentMetadata.totalItems <= pattern.patterns.length * this.minimumTotalItemsPatternsFactor) {
       throw new Error(`Actor ${this.name} is skipped because the total count is too low.`);
     }
     if (!context.has(KEY_CONTEXT_BGP_PARENTMETADATA)) {
       throw new Error(`Actor ${this.name} requires a context with an entry ${KEY_CONTEXT_BGP_PARENTMETADATA}.`);
     }
     const metadatas: any[] = context.get(KEY_CONTEXT_BGP_PARENTMETADATA);
-    if (!metadatas || !metadatas.length || !metadatas.some(
-      (metadata) => metadata.approximateMembershipFilters && metadata.approximateMembershipFilters.length)) {
+    if (!metadatas || metadatas.length === 0 || !metadatas.some(
+      metadata => metadata.approximateMembershipFilters && metadata.approximateMembershipFilters.length,
+    )) {
       throw new Error(`Actor ${this.name} requires approximate membership filter metadata.`);
     }
     return true;
   }
 
-  public async runOperation(pattern: Algebra.Bgp, context: ActionContext)
-    : Promise<IActorQueryOperationOutput> {
+  public async runOperation(pattern: Algebra.Bgp, context: ActionContext): Promise<IActorQueryOperationOutput> {
     try {
       const metadatas: any[] = context.get(KEY_CONTEXT_BGP_PARENTMETADATA);
       // We parallelize filtering for each pattern, as lazy filters may require expensive HTTP requests.
-      await Promise.all(pattern.patterns.map(async (triplePattern: Algebra.Pattern, i: number) => {
+      await Promise.all(pattern.patterns.map(async(triplePattern: Algebra.Pattern, i: number) => {
         const metadata = metadatas[i];
-        if (metadata && metadata.approximateMembershipFilters && metadata.approximateMembershipFilters.length) {
+        if (metadata && metadata.approximateMembershipFilters && metadata.approximateMembershipFilters.length > 0) {
           for (const { filter, variable } of metadata.approximateMembershipFilters) {
             const term = triplePattern[this.termUriMapper[variable]];
             if (term.termType !== 'Variable' && !await filter.filter(term, context)) {
@@ -69,13 +69,14 @@ export class ActorQueryOperationBgpMembershipFilter extends ActorQueryOperationT
           }
         }
       }));
-    } catch (e) {
-      this.logInfo(context, e.message, { triplePattern: e.triplePattern });
+    } catch (error: unknown) {
+      this.logInfo(context, (<Error> error).message, { triplePattern: (<any> error).triplePattern });
       return <IActorQueryOperationOutputBindings> {
-        bindingsStream: new EmptyIterator(),
+        bindingsStream: new ArrayIterator([], { autoStart: false }),
         metadata: () => Promise.resolve({ totalItems: 0 }),
         type: 'bindings',
         variables: [],
+        canContainUndefs: false,
       };
     }
 
@@ -84,7 +85,6 @@ export class ActorQueryOperationBgpMembershipFilter extends ActorQueryOperationT
     context = context.delete(KEY_CONTEXT_BGP_CURRENTMETADATA).delete(KEY_CONTEXT_BGP_PARENTMETADATA);
     return await this.mediatorQueryOperation.mediate({ operation: pattern, context });
   }
-
 }
 
 export interface IActorQueryOperationBgpMembershipFilterArgs extends IActorQueryOperationTypedMediatedArgs {

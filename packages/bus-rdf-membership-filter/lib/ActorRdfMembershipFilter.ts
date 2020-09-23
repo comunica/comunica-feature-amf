@@ -1,5 +1,6 @@
-import {ActionContext, Actor, IAction, IActorArgs, IActorOutput, IActorTest} from "@comunica/core";
-import * as RDF from "rdf-js";
+import type { ActionContext, IAction, IActorOutput, IActorTest } from '@comunica/core';
+import { Actor } from '@comunica/core';
+import type * as RDF from 'rdf-js';
 
 /**
  * A comunica actor for rdf-membership-filter events.
@@ -14,11 +15,6 @@ import * as RDF from "rdf-js";
  */
 export abstract class ActorRdfMembershipFilter
   extends Actor<IActionRdfMembershipFilter, IActorTest, IActorRdfMembershipFilterOutput> {
-
-  constructor(args: IActorArgs<IActionRdfMembershipFilter, IActorTest, IActorRdfMembershipFilterOutput>) {
-    super(args);
-  }
-
 }
 
 export interface IActionRdfMembershipFilter extends IAction {
@@ -49,7 +45,7 @@ export interface IApproximateMembershipFilter {
    * @param {ActionContext} context The action context.
    * @return {boolean} True if the term is probably in the dataset, false if the term is definitely not in the dataset.
    */
-  filter(term: RDF.Term, context: ActionContext): Promise<boolean>;
+  filter: (term: RDF.Term, context: ActionContext) => Promise<boolean>;
 
   /**
    * Calling this method will make sure that this filter will become fully loaded.
@@ -57,5 +53,5 @@ export interface IApproximateMembershipFilter {
    * @param {ActionContext} context The action context.
    * @return {Promise<void>} A promise resolving when the filter has been fully loaded.
    */
-  prefetch?(context: ActionContext): Promise<any>;
+  prefetch?: (context: ActionContext) => Promise<any>;
 }

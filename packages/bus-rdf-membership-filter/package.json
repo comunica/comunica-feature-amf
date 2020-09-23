@@ -12,7 +12,11 @@
   },
   "main": "index.js",
   "typings": "index",
-  "repository": "https://github.com/comunica/comunica/tree/master/packages/bus-rdf-membership-filter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/comunica/comunica-feature-amf.git",
+    "directory": "packages/bus-rdf-membership-filter"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -23,9 +27,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/comunica/comunica/issues"
+    "url": "https://github.com/comunica/comunica-feature-amf/issues"
   },
-  "homepage": "https://github.com/comunica/comunica#readme",
+  "homepage": "https://comunica.dev/",
   "files": [
     "components",
     "lib/**/*.d.ts",
@@ -34,13 +38,12 @@
     "index.js"
   ],
   "peerDependencies": {
-    "@comunica/core": "^1.4.0"
+    "@comunica/core": "^1.15.0"
   },
   "devDependencies": {
-    "@comunica/core": "^1.4.0"
+    "@comunica/core": "^1.15.0"
   },
   "scripts": {
-    "lint": "node \"../../node_modules/tslint/bin/tslint\" lib/**/*.ts test/**/*.ts --exclude '**/*.d.ts'",
     "build": "node \"../../node_modules/typescript/bin/tsc\"",
     "validate": "npm ls"
   }

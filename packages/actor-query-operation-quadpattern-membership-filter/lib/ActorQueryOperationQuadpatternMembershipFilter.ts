@@ -1,11 +1,13 @@
-import {IApproximateMembershipHolder} from "@comunica/actor-rdf-metadata-extract-membership";
-import {ActorQueryOperationTypedMediated, IActorQueryOperationOutput, IActorQueryOperationOutputBindings,
-  IActorQueryOperationTypedMediatedArgs, KEY_CONTEXT_PATTERN_PARENTMETADATA} from "@comunica/bus-query-operation";
-import {ActionContext, IActorTest} from "@comunica/core";
-import {EmptyIterator} from "asynciterator";
-import * as RDF from "rdf-js";
-import {QuadTermName, someTerms} from "rdf-terms";
-import {Algebra} from "sparqlalgebrajs";
+import type { IApproximateMembershipHolder } from '@comunica/actor-rdf-metadata-extract-membership';
+import type { IActorQueryOperationOutput, IActorQueryOperationOutputBindings,
+  IActorQueryOperationTypedMediatedArgs } from '@comunica/bus-query-operation';
+import { ActorQueryOperationTypedMediated, KEY_CONTEXT_PATTERN_PARENTMETADATA } from '@comunica/bus-query-operation';
+import type { ActionContext, IActorTest } from '@comunica/core';
+import { ArrayIterator } from 'asynciterator';
+import type * as RDF from 'rdf-js';
+import type { QuadTermName } from 'rdf-terms';
+import { someTerms } from 'rdf-terms';
+import type { Algebra } from 'sparqlalgebrajs';
 
 /**
  * A comunica Quadpattern Membership Filter Query Operation Actor.
@@ -13,15 +15,14 @@ import {Algebra} from "sparqlalgebrajs";
  * to have no matches based on any available approximate membership filters.
  */
 export class ActorQueryOperationQuadpatternMembershipFilter extends ActorQueryOperationTypedMediated<Algebra.Pattern> {
-
   public readonly subjectUri: string;
   public readonly predicateUri: string;
   public readonly objectUri: string;
-  public readonly graphUri?: string;
+  public readonly graphUri: string;
 
   public readonly termUriMapper: {[termUri: string]: QuadTermName};
 
-  constructor(args: IActorQueryOperationQuadpatternMembershipFilterArgs) {
+  public constructor(args: IActorQueryOperationQuadpatternMembershipFilterArgs) {
     super(args, 'pattern');
     this.termUriMapper = {
       [this.subjectUri]: 'subject',
@@ -32,7 +33,7 @@ export class ActorQueryOperationQuadpatternMembershipFilter extends ActorQueryOp
   }
 
   public static hasVariables(quad: RDF.BaseQuad): boolean {
-    return someTerms(quad, (value) => value.termType === 'Variable');
+    return someTerms(quad, value => value.termType === 'Variable');
   }
 
   public async testOperation(pattern: Algebra.Pattern, context: ActionContext): Promise<IActorTest> {
@@ -40,7 +41,7 @@ export class ActorQueryOperationQuadpatternMembershipFilter extends ActorQueryOp
       throw new Error(`Actor ${this.name} requires a context with an entry ${KEY_CONTEXT_PATTERN_PARENTMETADATA}.`);
     }
     const metadata = context.get(KEY_CONTEXT_PATTERN_PARENTMETADATA);
-    if (!metadata.approximateMembershipFilters || !metadata.approximateMembershipFilters.length) {
+    if (!metadata.approximateMembershipFilters || metadata.approximateMembershipFilters.length === 0) {
       throw new Error(`Actor ${this.name} requires approximate membership filter metadata.`);
     }
     if (ActorQueryOperationQuadpatternMembershipFilter.hasVariables(pattern)) {
@@ -49,8 +50,7 @@ export class ActorQueryOperationQuadpatternMembershipFilter extends ActorQueryOp
     return true;
   }
 
-  public async runOperation(pattern: Algebra.Pattern, context: ActionContext)
-    : Promise<IActorQueryOperationOutput> {
+  public async runOperation(pattern: Algebra.Pattern, context: ActionContext): Promise<IActorQueryOperationOutput> {
     const filters: IApproximateMembershipHolder[] = context.get(KEY_CONTEXT_PATTERN_PARENTMETADATA)
       .approximateMembershipFilters;
 
@@ -61,10 +61,11 @@ export class ActorQueryOperationQuadpatternMembershipFilter extends ActorQueryOp
       if (!await filter.filter(term, context)) {
         this.logInfo(context, `True negative for AMF`, { pattern });
         return <IActorQueryOperationOutputBindings> {
-          bindingsStream: new EmptyIterator(),
+          bindingsStream: new ArrayIterator([], { autoStart: false }),
           metadata: () => Promise.resolve({ totalItems: 0 }),
           type: 'bindings',
           variables: [],
+          canContainUndefs: false,
         };
       }
     }
@@ -72,9 +73,9 @@ export class ActorQueryOperationQuadpatternMembershipFilter extends ActorQueryOp
     // Fallback to default quad pattern actor if all filters (approximately) passed.
     // In this case, the pattern *may* have results.
     return await this.mediatorQueryOperation.mediate(
-      { operation: pattern, context: context.delete(KEY_CONTEXT_PATTERN_PARENTMETADATA) });
+      { operation: pattern, context: context.delete(KEY_CONTEXT_PATTERN_PARENTMETADATA) },
+    );
   }
-
 }
 
 export interface IActorQueryOperationQuadpatternMembershipFilterArgs extends IActorQueryOperationTypedMediatedArgs {

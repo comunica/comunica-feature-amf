@@ -1,10 +1,11 @@
-import {ActorQueryOperation, Bindings, IActorQueryOperationOutputBindings,
+import type { IActorQueryOperationOutputBindings } from '@comunica/bus-query-operation';
+import { ActorQueryOperation, Bindings,
   KEY_CONTEXT_BGP_CURRENTMETADATA, KEY_CONTEXT_BGP_PARENTMETADATA,
-  KEY_CONTEXT_BGP_PATTERNBINDINGS} from "@comunica/bus-query-operation";
-import {ActionContext, Bus} from "@comunica/core";
-import {literal, namedNode, variable} from "@rdfjs/data-model";
-import {ArrayIterator} from "asynciterator";
-import {ActorQueryOperationBgpMembershipFilterCombined} from "../lib/ActorQueryOperationBgpMembershipFilterCombined";
+  KEY_CONTEXT_BGP_PATTERNBINDINGS } from '@comunica/bus-query-operation';
+import { ActionContext, Bus } from '@comunica/core';
+import { literal, namedNode, variable } from '@rdfjs/data-model';
+import { ArrayIterator } from 'asynciterator';
+import { ActorQueryOperationBgpMembershipFilterCombined } from '../lib/ActorQueryOperationBgpMembershipFilterCombined';
 const arrayifyStream = require('arrayify-stream');
 
 const subjectUri = 'http://example.org/s';
@@ -15,13 +16,13 @@ const plainRequestSize = 1000;
 const amfTripleSize = 2;
 
 describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
-  let bus;
-  let mediatorQueryOperation;
+  let bus: any;
+  let mediatorQueryOperation: any;
 
   beforeEach(() => {
     bus = new Bus({ name: 'bus' });
     mediatorQueryOperation = {
-      mediate: (arg) => Promise.resolve({
+      mediate: (arg: any) => Promise.resolve({
         bindingsStream: new ArrayIterator([
           Bindings({ a: literal('1') }),
           Bindings({ a: literal('2') }),
@@ -30,7 +31,7 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
         metadata: () => Promise.resolve({ totalItems: 3 }),
         operated: arg,
         type: 'bindings',
-        variables: ['a'],
+        variables: [ 'a' ],
       }),
     };
   });
@@ -68,7 +69,8 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
           plainRequestSize,
           predicateUri,
           subjectUri,
-        });
+        },
+      );
     });
 
     it('should have a termUriMapper object', () => {
@@ -185,7 +187,8 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
       });
       const op = { operation, context };
       return expect(actor.test(op)).rejects.toThrow(
-        new Error('Actor actor requires a context with an entry @comunica/bus-query-operation:bgpCurrentMetadata.'));
+        new Error('Actor actor requires a context with an entry @comunica/bus-query-operation:bgpCurrentMetadata.'),
+      );
     });
 
     it('should not test on a BGP with current metadata with low count and very high remaining pattern count', () => {
@@ -224,7 +227,8 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
       });
       const op = { operation, context };
       return expect(actor.test(op)).rejects.toThrow(
-        new Error('Actor actor is skipped because the AMF would be ineffective.'));
+        new Error('Actor actor is skipped because the AMF would be ineffective.'),
+      );
     });
 
     it('should not test on a BGP with current metadata with low count and unknown remaining pattern count', () => {
@@ -262,7 +266,8 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
       });
       const op = { operation, context };
       return expect(actor.test(op)).rejects.toThrow(
-        new Error('Actor actor is skipped because the AMF would be ineffective.'));
+        new Error('Actor actor is skipped because the AMF would be ineffective.'),
+      );
     });
 
     it('should not test on a BGP without filters', () => {
@@ -326,7 +331,8 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
       });
       const op = { operation, context };
       return expect(actor.test(op)).rejects.toThrow(new Error(
-        'Actor actor requires a context with an entry @comunica/bus-query-operation:bgpPatternBindings.'));
+        'Actor actor requires a context with an entry @comunica/bus-query-operation:bgpPatternBindings.',
+      ));
     });
 
     it('should not test on a BGP with no filters entry', () => {
@@ -383,11 +389,12 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
       });
       const op = { operation, context };
       return expect(actor.test(op)).rejects.toThrow(
-        new Error('Actor actor requires a context with an entry @comunica/bus-query-operation:bgpParentMetadata.'));
+        new Error('Actor actor requires a context with an entry @comunica/bus-query-operation:bgpParentMetadata.'),
+      );
     });
 
     it('should not test on non-bgp', () => {
-      const op = { operation: { type: 'some-other-type' } };
+      const op = { operation: { type: 'some-other-type' }};
       return expect(actor.test(op)).rejects
         .toThrow(new Error('Actor actor only supports bgp operations, but got some-other-type'));
     });
@@ -425,15 +432,16 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
           },
         ],
       });
-      return actor.run({ operation, context }).then(async (output: IActorQueryOperationOutputBindings) => {
+      return actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
         expect(output.variables).toEqual([ 'a' ]);
-        expect(await output.metadata()).toEqual({ totalItems: 3 });
+        expect(await (<any> output.metadata)()).toEqual({ totalItems: 3 });
         expect(await arrayifyStream(output.bindingsStream)).toEqual(
           [
             Bindings({ a: literal('1') }),
             Bindings({ a: literal('2') }),
             Bindings({ a: literal('3') }),
-          ]);
+          ],
+        );
       });
     });
 
@@ -470,9 +478,9 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
           },
         ],
       });
-      return actor.run({ operation, context }).then(async (output: IActorQueryOperationOutputBindings) => {
+      return actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
         expect(output.variables).toEqual([]);
-        expect(await output.metadata()).toEqual({ totalItems: 0 });
+        expect(await (<any> output.metadata)()).toEqual({ totalItems: 0 });
         expect(await arrayifyStream(output.bindingsStream)).toEqual([]);
       });
     });
@@ -516,9 +524,9 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
           },
         ],
       });
-      return actor.run({ operation, context }).then(async (output: IActorQueryOperationOutputBindings) => {
+      return actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
         expect(output.variables).toEqual([]);
-        expect(await output.metadata()).toEqual({ totalItems: 0 });
+        expect(await (<any> output.metadata)()).toEqual({ totalItems: 0 });
         expect(await arrayifyStream(output.bindingsStream)).toEqual([]);
       });
     });
@@ -569,15 +577,16 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
           {},
         ],
       });
-      return actor.run({ operation, context }).then(async (output: IActorQueryOperationOutputBindings) => {
+      return actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
         expect(output.variables).toEqual([ 'a' ]);
-        expect(await output.metadata()).toEqual({ totalItems: 3 });
+        expect(await (<any> output.metadata)()).toEqual({ totalItems: 3 });
         expect(await arrayifyStream(output.bindingsStream)).toEqual(
           [
             Bindings({ a: literal('1') }),
             Bindings({ a: literal('2') }),
             Bindings({ a: literal('3') }),
-          ]);
+          ],
+        );
       });
     });
 
@@ -630,9 +639,9 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
           },
         ],
       });
-      return actor.run({ operation, context }).then(async (output: IActorQueryOperationOutputBindings) => {
+      return actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
         expect(output.variables).toEqual([]);
-        expect(await output.metadata()).toEqual({ totalItems: 0 });
+        expect(await (<any> output.metadata)()).toEqual({ totalItems: 0 });
         expect(await arrayifyStream(output.bindingsStream)).toEqual([]);
       });
     });
@@ -693,10 +702,66 @@ describe('ActorQueryOperationBgpMembershipFilterCombined', () => {
           },
         ],
       });
-      return actor.run({ operation, context }).then(async (output: IActorQueryOperationOutputBindings) => {
+      return actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
         expect(output.variables).toEqual([]);
-        expect(await output.metadata()).toEqual({ totalItems: 0 });
+        expect(await (<any> output.metadata)()).toEqual({ totalItems: 0 });
         expect(await arrayifyStream(output.bindingsStream)).toEqual([]);
+      });
+    });
+
+    it('should run for BGP with 2 patterns with empty pattern bindings', () => {
+      const operation = {
+        patterns: [
+          {
+            graph: namedNode('g1'),
+            object: variable('o1'),
+            predicate: namedNode('p1'),
+            subject: namedNode('s1'),
+            type: 'pattern',
+          },
+          {
+            graph: namedNode('g2'),
+            object: variable('o2'),
+            predicate: namedNode('p2'),
+            subject: namedNode('s2'),
+            type: 'pattern',
+          },
+        ],
+        type: 'bgp',
+      };
+      const context = ActionContext({
+        [KEY_CONTEXT_BGP_CURRENTMETADATA]: {
+          totalItems: 10,
+        },
+        [KEY_CONTEXT_BGP_PARENTMETADATA]: [{
+          approximateMembershipFilters: [
+            {
+              filter: {
+                filter: () => true,
+              },
+              variable: graphUri,
+            },
+            {
+              filter: {
+                filter: () => false,
+              },
+              variable: graphUri,
+            },
+          ],
+        }],
+        [KEY_CONTEXT_BGP_PATTERNBINDINGS]: [
+          {},
+          {},
+        ],
+      });
+      return actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
+        expect(output.variables).toEqual([ 'a' ]);
+        expect(await (<any> output.metadata)()).toEqual({ totalItems: 3 });
+        expect(await arrayifyStream(output.bindingsStream)).toEqual([
+          Bindings({ a: literal('1') }),
+          Bindings({ a: literal('2') }),
+          Bindings({ a: literal('3') }),
+        ]);
       });
     });
   });

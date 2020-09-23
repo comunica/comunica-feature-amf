@@ -1,11 +1,25 @@
-# Comunica Feature — AMF
+<p align="center">
+  <a href="https://comunica.dev/">
+    <img alt="Comunica" src="https://comunica.dev/img/comunica_red.svg" width="200">
+  </a>
+</p>
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/comunica/comunica-feature-amf.svg)](https://greenkeeper.io/)
-[![Build Status](https://travis-ci.org/comunica/comunica-feature-amf.svg?branch=master)](https://travis-ci.org/comunica/comunica-feature-amf)
-[![Coverage Status](https://coveralls.io/repos/github/comunica/comunica-feature-amf/badge.svg?branch=master)](https://coveralls.io/github/comunica/comunica-feature-amf?branch=master)
+<p align="center">
+  <strong>Approximate Membership Functions for Comunica</strong>
+</p>
 
-This is a monorepo that contains packages for allowing [Comunica](https://github.com/comunica/comunica) to handle approximate membership functions.
+<p align="center">
+<a href="https://travis-ci.org/comunica/comunica-feature-amf"><img src="https://travis-ci.org/comunica/comunica-feature-amf.svg?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/github/comunica/comunica-feature-amf?branch=master"><img src="https://coveralls.io/repos/github/comunica/comunica-feature-amf/badge.svg?branch=master" alt="Coverage Status"></a>
+<a href="https://gitter.im/comunica/Lobby"><img src="https://badges.gitter.im/comunica.png" alt="Gitter chat"></a>
+</p>
+
+**[Learn more about Comunica on our website](https://comunica.dev/).**
+
+This is a monorepo that contains packages for allowing [Comunica](https://github.com/comunica/comunica) to handle [approximate membership functions](https://comunica.github.io/Article-SSWS2020-AMF/).
 If you want to _use_ an AMF-enabled Comunica engine, have a look at [Comunica SPARQL AMF](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-init-sparql-amf).
+
+This can be tested using [the `feature-handlers-amf-2` branch in the LDF Server](https://github.com/LinkedDataFragments/Server.js/tree/feature-handlers-amf-2).
 
 Concretely, this monorepo adds AMF support to Comunica using the following packages:
 * [RDF Membership Filter Bus](https://github.com/comunica/comunica-feature-amf/tree/master/packages/bus-rdf-membership-filter): A bus for actors that can construct approximate membership filters.
@@ -18,6 +32,12 @@ Concretely, this monorepo adds AMF support to Comunica using the following packa
 
 ## Development Setup
 
+_(JSDoc: https://comunica.github.io/comunica-feature-amf/)_
+
+This repository should be used by Comunica module **developers** as it contains multiple Comunica modules that can be composed.
+This repository is managed as a [monorepo](https://github.com/babel/babel/blob/master/doc/design/monorepo.md)
+using [Lerna](https://lernajs.io/).
+
 If you want to develop new features
 or use the (potentially unstable) in-development version,
 you can set up a development environment for Comunica.
@@ -28,15 +48,16 @@ Comunica is tested on OSX, Linux and Windows.
 This project can be setup by cloning and installing it as follows:
 
 ```bash
-$ git clone git@github.com:comunica/comunica-feature-amf
-$ cd comunica-feature-amf
+$ git clone https://github.com/comunica/comunica.git
+$ cd comunica
 $ yarn install
 ```
 
 **Note: `npm install` is not supported at the moment, as this project makes use of Yarn's [workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) functionality**
 
 This will install the dependencies of all modules, and bootstrap the Lerna monorepo.
-After that, all [Comunica packages](https://github.com/comunica/comunica-feature-amf/tree/master/packages) are available in the `packages/` folder.
+After that, all [Comunica packages](https://github.com/comunica/comunica-feature-amf/tree/master/packages) are available in the `packages/` folder
+and can be used in a development environment, such as querying with [Comunica SPARQL AMF (`packages/actor-init-sparql-amf`)](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-init-sparql-amf).
 
 Furthermore, this will add [pre-commit hooks](https://www.npmjs.com/package/pre-commit)
 to build, lint and test.

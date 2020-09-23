@@ -1,13 +1,13 @@
+import type { IActorQueryOperationOutputBindings } from '@comunica/bus-query-operation';
 import {
   ActorQueryOperation,
   Bindings,
-  IActorQueryOperationOutputBindings,
   KEY_CONTEXT_PATTERN_PARENTMETADATA,
-} from "@comunica/bus-query-operation";
-import {ActionContext, Bus} from "@comunica/core";
-import {literal, namedNode, variable} from "@rdfjs/data-model";
-import {ArrayIterator} from "asynciterator";
-import {ActorQueryOperationQuadpatternMembershipFilter} from "../lib/ActorQueryOperationQuadpatternMembershipFilter";
+} from '@comunica/bus-query-operation';
+import { ActionContext, Bus } from '@comunica/core';
+import { literal, namedNode, variable } from '@rdfjs/data-model';
+import { ArrayIterator } from 'asynciterator';
+import { ActorQueryOperationQuadpatternMembershipFilter } from '../lib/ActorQueryOperationQuadpatternMembershipFilter';
 const arrayifyStream = require('arrayify-stream');
 
 const subjectUri = 'http://example.org/s';
@@ -16,13 +16,13 @@ const objectUri = 'http://example.org/o';
 const graphUri = 'http://example.org/g';
 
 describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
-  let bus;
-  let mediatorQueryOperation;
+  let bus: any;
+  let mediatorQueryOperation: any;
 
   beforeEach(() => {
     bus = new Bus({ name: 'bus' });
     mediatorQueryOperation = {
-      mediate: (arg) => Promise.resolve({
+      mediate: (arg: any) => Promise.resolve({
         bindingsStream: new ArrayIterator([
           Bindings({ a: literal('1') }),
           Bindings({ a: literal('2') }),
@@ -31,7 +31,7 @@ describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
         metadata: () => Promise.resolve({ totalItems: 3 }),
         operated: arg,
         type: 'bindings',
-        variables: ['a'],
+        variables: [ 'a' ],
       }),
     };
   });
@@ -59,7 +59,8 @@ describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
 
     beforeEach(() => {
       actor = new ActorQueryOperationQuadpatternMembershipFilter(
-        { name: 'actor', bus, mediatorQueryOperation, subjectUri, predicateUri, objectUri, graphUri });
+        { name: 'actor', bus, mediatorQueryOperation, subjectUri, predicateUri, objectUri, graphUri },
+      );
     });
 
     it('should have a termUriMapper object', () => {
@@ -117,7 +118,8 @@ describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
       });
       const op = { operation, context };
       return expect(actor.test(op)).rejects.toEqual(
-        new Error('Actor actor can only handle patterns without variables.'));
+        new Error('Actor actor can only handle patterns without variables.'),
+      );
     });
 
     it('should not test on a quadpattern without variables and 0 membership filters', () => {
@@ -135,7 +137,8 @@ describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
       });
       const op = { operation, context };
       return expect(actor.test(op)).rejects.toEqual(
-        new Error('Actor actor requires approximate membership filter metadata.'));
+        new Error('Actor actor requires approximate membership filter metadata.'),
+      );
     });
 
     it('should not test on a quadpattern without variables and no membership filter metadata', () => {
@@ -151,7 +154,8 @@ describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
       });
       const op = { operation, context };
       return expect(actor.test(op)).rejects.toEqual(
-        new Error('Actor actor requires approximate membership filter metadata.'));
+        new Error('Actor actor requires approximate membership filter metadata.'),
+      );
     });
 
     it('should not test on a quadpattern without variables and no metadata', () => {
@@ -165,7 +169,8 @@ describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
       const context = ActionContext({});
       const op = { operation, context };
       return expect(actor.test(op)).rejects.toEqual(
-        new Error('Actor actor requires a context with an entry @comunica/bus-query-operation:patternParentMetadata.'));
+        new Error('Actor actor requires a context with an entry @comunica/bus-query-operation:patternParentMetadata.'),
+      );
     });
 
     it('should not test on a quadpattern without variables and no context', () => {
@@ -177,13 +182,14 @@ describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
         type: 'pattern',
       };
       const context = null;
-      const op = { operation, context };
+      const op: any = { operation, context };
       return expect(actor.test(op)).rejects.toEqual(
-        new Error('Actor actor requires a context with an entry @comunica/bus-query-operation:patternParentMetadata.'));
+        new Error('Actor actor requires a context with an entry @comunica/bus-query-operation:patternParentMetadata.'),
+      );
     });
 
     it('should not test on non-quadpattern', () => {
-      const op = { operation: { type: 'some-other-type' } };
+      const op = { operation: { type: 'some-other-type' }};
       return expect(actor.test(op)).rejects.toBeTruthy();
     });
 
@@ -207,15 +213,16 @@ describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
           ],
         },
       });
-      return actor.run({ operation, context }).then(async (output: IActorQueryOperationOutputBindings) => {
+      return actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
         expect(output.variables).toEqual([ 'a' ]);
-        expect(await output.metadata()).toEqual({ totalItems: 3 });
+        expect(await (<any> output.metadata)()).toEqual({ totalItems: 3 });
         expect(await arrayifyStream(output.bindingsStream)).toEqual(
           [
             Bindings({ a: literal('1') }),
             Bindings({ a: literal('2') }),
             Bindings({ a: literal('3') }),
-          ]);
+          ],
+        );
       });
     });
 
@@ -239,9 +246,9 @@ describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
           ],
         },
       });
-      return actor.run({ operation, context }).then(async (output: IActorQueryOperationOutputBindings) => {
+      return actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
         expect(output.variables).toEqual([]);
-        expect(await output.metadata()).toEqual({ totalItems: 0 });
+        expect(await (<any> output.metadata)()).toEqual({ totalItems: 0 });
         expect(await arrayifyStream(output.bindingsStream)).toEqual([]);
       });
     });
@@ -272,9 +279,9 @@ describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
           ],
         },
       });
-      return actor.run({ operation, context }).then(async (output: IActorQueryOperationOutputBindings) => {
+      return actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
         expect(output.variables).toEqual([]);
-        expect(await output.metadata()).toEqual({ totalItems: 0 });
+        expect(await (<any> output.metadata)()).toEqual({ totalItems: 0 });
         expect(await arrayifyStream(output.bindingsStream)).toEqual([]);
       });
     });

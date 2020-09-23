@@ -1,1 +1,3 @@
 import: comunica/travis-presets:yarn-monorepo.yml@master
+script:
+  - lerna run integration --concurrency 1

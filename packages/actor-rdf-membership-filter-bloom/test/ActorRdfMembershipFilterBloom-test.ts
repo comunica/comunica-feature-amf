@@ -1,12 +1,12 @@
-import {ActorRdfMembershipFilter} from "@comunica/bus-rdf-membership-filter";
-import {Bus} from "@comunica/core";
-import {ActorRdfMembershipFilterBloom} from "../lib/ActorRdfMembershipFilterBloom";
-import {ApproximateMembershipFilterBloom} from "../lib/ApproximateMembershipFilterBloom";
+import { ActorRdfMembershipFilter } from '@comunica/bus-rdf-membership-filter';
+import { Bus } from '@comunica/core';
+import { ActorRdfMembershipFilterBloom } from '../lib/ActorRdfMembershipFilterBloom';
+import { ApproximateMembershipFilterBloom } from '../lib/ApproximateMembershipFilterBloom';
 
 describe('ActorRdfMembershipFilterBloom', () => {
-  let bus;
-  let typeUri;
-  let properties;
+  let bus: any;
+  let typeUri: any;
+  let properties: any;
 
   beforeEach(() => {
     bus = new Bus({ name: 'bus' });
@@ -92,9 +92,9 @@ describe('ActorRdfMembershipFilterBloom', () => {
       })).rejects.toBeTruthy();
     });
 
-    it('should run', async () => {
+    it('should run', async() => {
       const filter = (await actor.run({ typeUri, properties })).filter;
-      return expect(filter).toBeInstanceOf(ApproximateMembershipFilterBloom);
+      expect(filter).toBeInstanceOf(ApproximateMembershipFilterBloom);
     });
   });
 });
