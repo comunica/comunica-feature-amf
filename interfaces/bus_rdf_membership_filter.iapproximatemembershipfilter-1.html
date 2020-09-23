@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IApproximateMembershipFilter | Comunica</title>
-	<meta name="description" content="Documentation for Comunica">
+	<title>IApproximateMembershipFilter | Comunica AMF</title>
+	<meta name="description" content="Documentation for Comunica AMF">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Comunica</a>
+					<a href="../index.html" class="title">Comunica AMF</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -97,87 +97,90 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html#filter" class="tsd-kind-icon">filter</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html#prefetch" class="tsd-kind-icon">prefetch</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html#filter" class="tsd-kind-icon">filter</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html#prefetch" class="tsd-kind-icon">prefetch</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="filter" class="tsd-anchor"></a>
 					<h3>filter</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">filter<span class="tsd-signature-symbol">(</span>term<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RDF.Term</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActionContext</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/1e10ea1/packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts#L52">packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts:52</a></li>
+					<div class="tsd-signature tsd-kind-icon">filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>term<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RDF.Term</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActionContext</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/4b3eb8b/packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts#L48">packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts:48</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An approximate filter function.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>An RDF Term.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The action context.</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>True if the term is probably in the dataset, false if the term is definitely not in the dataset.</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>term<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RDF.Term</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActionContext</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>An approximate filter function.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>term: <span class="tsd-signature-type">RDF.Term</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>An RDF Term.</p>
-									</div>
-								</li>
-								<li>
-									<h5>context: <span class="tsd-signature-type">ActionContext</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The action context.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>True if the term is probably in the dataset, false if the term is definitely not in the dataset.</p>
-						</li>
-					</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>term: <span class="tsd-signature-type">RDF.Term</span></h5>
+											</li>
+											<li>
+												<h5>context: <span class="tsd-signature-type">ActionContext</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="prefetch" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> prefetch</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">prefetch<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActionContext</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/1e10ea1/packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts#L60">packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts:60</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Calling this method will make sure that this filter will become fully loaded.
-									This is useful when the filter is lazily constructed.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>context: <span class="tsd-signature-type">ActionContext</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The action context.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A promise resolving when the filter has been fully loaded.</p>
-						</li>
-					</ul>
+					<div class="tsd-signature tsd-kind-icon">prefetch<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActionContext</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/4b3eb8b/packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts#L56">packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts:56</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Calling this method will make sure that this filter will become fully loaded.
+							This is useful when the filter is lazily constructed.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The action context.</p>
+							</dd>
+							<dt>returns</dt>
+							<dd><p>A promise resolving when the filter has been fully loaded.</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -277,10 +280,10 @@
 							<li class="current tsd-kind-interface tsd-parent-kind-module">
 								<a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html" class="tsd-kind-icon">IApproximate<wbr>Membership<wbr>Filter</a>
 								<ul>
-									<li class=" tsd-kind-method tsd-parent-kind-interface">
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
 										<a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html#filter" class="tsd-kind-icon">filter</a>
 									</li>
-									<li class=" tsd-kind-method tsd-parent-kind-interface">
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
 										<a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html#prefetch" class="tsd-kind-icon">prefetch</a>
 									</li>
 								</ul>
@@ -299,11 +302,12 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
@@ -316,6 +320,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

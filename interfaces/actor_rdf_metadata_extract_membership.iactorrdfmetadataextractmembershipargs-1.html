@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IActorRdfMetadataExtractMembershipArgs | Comunica</title>
-	<meta name="description" content="Documentation for Comunica">
+	<title>IActorRdfMetadataExtractMembershipArgs | Comunica AMF</title>
+	<meta name="description" content="Documentation for Comunica AMF">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Comunica</a>
+					<a href="../index.html" class="title">Comunica AMF</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -89,6 +89,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="actor_rdf_metadata_extract_membership.iactorrdfmetadataextractmembershipargs-1.html#beforeactors" class="tsd-kind-icon">before<wbr>Actors</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="actor_rdf_metadata_extract_membership.iactorrdfmetadataextractmembershipargs-1.html#bus" class="tsd-kind-icon">bus</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="actor_rdf_metadata_extract_membership.iactorrdfmetadataextractmembershipargs-1.html#mediatorrdfdereference" class="tsd-kind-icon">mediator<wbr>Rdf<wbr>Dereference</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="actor_rdf_metadata_extract_membership.iactorrdfmetadataextractmembershipargs-1.html#mediatorrdfmembership" class="tsd-kind-icon">mediator<wbr>Rdf<wbr>Membership</a></li>
@@ -101,13 +102,24 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="beforeactors" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> before<wbr>Actors</h3>
+					<div class="tsd-signature tsd-kind-icon">before<wbr>Actors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Actor</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IActionRdfMetadataExtract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActorTest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActorRdfMetadataExtractOutput</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="actor_query_operation_bgp_membership_filter.iactorqueryoperationbgpmembershipfilterargs-1.html">IActorQueryOperationBgpMembershipFilterArgs</a>.<a href="actor_query_operation_bgp_membership_filter.iactorqueryoperationbgpmembershipfilterargs-1.html#beforeactors">beforeActors</a></p>
+						<ul>
+							<li>Defined in node_modules/@comunica/core/lib/Actor.d.ts:95</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="bus" class="tsd-anchor"></a>
 					<h3>bus</h3>
 					<div class="tsd-signature tsd-kind-icon">bus<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Bus</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Actor</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IActionRdfMetadataExtract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActorTest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActorRdfMetadataExtractOutput</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActionRdfMetadataExtract</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActorTest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActorRdfMetadataExtractOutput</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="actor_query_operation_bgp_membership_filter.iactorqueryoperationbgpmembershipfilterargs-1.html">IActorQueryOperationBgpMembershipFilterArgs</a>.<a href="actor_query_operation_bgp_membership_filter.iactorqueryoperationbgpmembershipfilterargs-1.html#bus">bus</a></p>
 						<ul>
-							<li>Defined in node_modules/@comunica/core/lib/Actor.d.ts:93</li>
+							<li>Defined in node_modules/@comunica/core/lib/Actor.d.ts:94</li>
 						</ul>
 					</aside>
 				</section>
@@ -117,7 +129,7 @@
 					<div class="tsd-signature tsd-kind-icon">mediator<wbr>Rdf<wbr>Dereference<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Mediator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Actor</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IActionRdfDereference</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActorTest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActorRdfDereferenceOutput</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActionRdfDereference</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActorTest</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActorRdfDereferenceOutput</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/1e10ea1/packages/actor-rdf-metadata-extract-membership/lib/ActorRdfMetadataExtractMembership.ts#L113">packages/actor-rdf-metadata-extract-membership/lib/ActorRdfMetadataExtractMembership.ts:113</a></li>
+							<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/4b3eb8b/packages/actor-rdf-metadata-extract-membership/lib/ActorRdfMetadataExtractMembership.ts#L118">packages/actor-rdf-metadata-extract-membership/lib/ActorRdfMetadataExtractMembership.ts:118</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -127,7 +139,7 @@
 					<div class="tsd-signature tsd-kind-icon">mediator<wbr>Rdf<wbr>Membership<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Mediator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Actor</span><span class="tsd-signature-symbol">&lt;</span><a href="bus_rdf_membership_filter.iactionrdfmembershipfilter-1.html" class="tsd-signature-type">IActionRdfMembershipFilter</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActorTest</span><span class="tsd-signature-symbol">, </span><a href="bus_rdf_membership_filter.iactorrdfmembershipfilteroutput-1.html" class="tsd-signature-type">IActorRdfMembershipFilterOutput</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><a href="bus_rdf_membership_filter.iactionrdfmembershipfilter-1.html" class="tsd-signature-type">IActionRdfMembershipFilter</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IActorTest</span><span class="tsd-signature-symbol">, </span><a href="bus_rdf_membership_filter.iactorrdfmembershipfilteroutput-1.html" class="tsd-signature-type">IActorRdfMembershipFilterOutput</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/1e10ea1/packages/actor-rdf-metadata-extract-membership/lib/ActorRdfMetadataExtractMembership.ts#L111">packages/actor-rdf-metadata-extract-membership/lib/ActorRdfMetadataExtractMembership.ts:111</a></li>
+							<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/4b3eb8b/packages/actor-rdf-metadata-extract-membership/lib/ActorRdfMetadataExtractMembership.ts#L116">packages/actor-rdf-metadata-extract-membership/lib/ActorRdfMetadataExtractMembership.ts:116</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -138,7 +150,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="actor_query_operation_bgp_membership_filter.iactorqueryoperationbgpmembershipfilterargs-1.html">IActorQueryOperationBgpMembershipFilterArgs</a>.<a href="actor_query_operation_bgp_membership_filter.iactorqueryoperationbgpmembershipfilterargs-1.html#name">name</a></p>
 						<ul>
-							<li>Defined in node_modules/@comunica/core/lib/Actor.d.ts:92</li>
+							<li>Defined in node_modules/@comunica/core/lib/Actor.d.ts:93</li>
 						</ul>
 					</aside>
 				</section>
@@ -220,6 +232,9 @@
 								<a href="actor_rdf_metadata_extract_membership.iactorrdfmetadataextractmembershipargs-1.html" class="tsd-kind-icon">IActor<wbr>Rdf<wbr>Metadata<wbr>Extract<wbr>Membership<wbr>Args</a>
 								<ul>
 									<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+										<a href="actor_rdf_metadata_extract_membership.iactorrdfmetadataextractmembershipargs-1.html#beforeactors" class="tsd-kind-icon">before<wbr>Actors</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 										<a href="actor_rdf_metadata_extract_membership.iactorrdfmetadataextractmembershipargs-1.html#bus" class="tsd-kind-icon">bus</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -253,11 +268,12 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
@@ -270,6 +286,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

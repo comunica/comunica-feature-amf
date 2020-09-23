@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>actor-init-sparql-amf | Comunica</title>
-	<meta name="description" content="Documentation for Comunica">
+	<title>actor-init-sparql-amf | Comunica AMF</title>
+	<meta name="description" content="Documentation for Comunica AMF">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Comunica</a>
+					<a href="../index.html" class="title">Comunica AMF</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -71,23 +71,67 @@
 					<a href="#comunica-sparql-amf-init-actor" id="comunica-sparql-amf-init-actor" style="color: inherit; text-decoration: none;">
 						<h1>Comunica SPARQL AMF Init Actor</h1>
 					</a>
-					<p><a href="https://www.npmjs.com/package/@comunica/actor-init-sparql-amf"><img src="https://badge.fury.io/js/%40comunica%2Factor-init-sparql-amf.svg" alt="npm version"></a></p>
-					<p>A comunica SPARQL File Init Actor.</p>
-					<p>This module is part of the <a href="https://github.com/comunica/comunica">Comunica framework</a>.</p>
+					<p><a href="https://www.npmjs.com/package/@comunica/actor-init-sparql-amf"><img src="https://badge.fury.io/js/%40comunica%2Factor-init-sparql-amf.svg" alt="npm version"></a>
+					<a href="https://hub.docker.com/r/comunica/actor-init-sparql-amf/"><img src="https://img.shields.io/docker/pulls/comunica/actor-init-sparql-amf.svg" alt="Docker Pulls"></a></p>
+					<p>Comunica SPARQL AMF is a SPARQL query engine for JavaScript that takes into account <a href="https://comunica.github.io/Article-SSWS2020-AMF/">approximate membership functions</a>.</p>
+					<p>This can be tested using <a href="https://github.com/LinkedDataFragments/Server.js/tree/feature-handlers-amf-2">the <code>feature-handlers-amf-2</code> branch in the LDF Server</a>.</p>
+					<p>This module is part of the <a href="https://comunica.dev/">Comunica framework</a>.</p>
 					<a href="#install" id="install" style="color: inherit; text-decoration: none;">
 						<h2>Install</h2>
 					</a>
-					<pre><code class="language-bash">$ yarn add @comunica/actor-init-sparql-file</code></pre>
+					<pre><code class="language-bash">$ yarn add @comunica/actor-init-sparql-amf</code></pre>
+					<p>or</p>
+					<pre><code class="language-bash">$ npm install -g @comunica/actor-init-sparql-amf</code></pre>
 					<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 						<h2>Usage</h2>
 					</a>
-					<p>Show 100 triples from <a href="http://fragments.dbpedia.org/2015-10/en">http://fragments.dbpedia.org/2015-10/en</a>:</p>
-					<pre><code class="language-bash">$ comunica-sparql-amf http://fragments.dbpedia.org/2015-10/en <span class="hljs-string">"CONSTRUCT WHERE { ?s ?p ?o } LIMIT 100"</span></code></pre>
+					<p>Show 100 triples from <a href="http://localhost:3000/dataset">http://localhost:3000/dataset</a>:</p>
+					<pre><code class="language-bash">$ comunica-sparql-amf http://localhost:3000/dataset <span class="hljs-string">&quot;CONSTRUCT WHERE { ?s ?p ?o } LIMIT 100&quot;</span></code></pre>
 					<p>Show the help with all options:</p>
 					<pre><code class="language-bash">$ comunica-sparql-amf --<span class="hljs-built_in">help</span></code></pre>
 					<p>Just like <a href="https://github.com/comunica/comunica/tree/master/packages/actor-init-sparql">Comunica SPARQL</a>,
-						a <a href="https://github.com/comunica/comunica/tree/master/packages/actor-init-sparql#usage-from-the-command-line">dynamic variant</a> (<code>comunica-dynamic-sparql-amf</code>) also exists,
-					and <a href="https://github.com/comunica/comunica/tree/master/packages/actor-init-sparql#usage-from-http">a script for starting a HTTP service</a> (<code>comunica-sparql-amf-http</code>).</p>
+					a <a href="https://github.com/comunica/comunica/tree/master/packages/actor-init-sparql#usage-from-the-command-line">dynamic variant</a> (<code>comunica-dynamic-sparql-link-traversal</code>) also exists.</p>
+					<p><em><a href="https://comunica.dev/docs/query/getting_started/query_cli/"><strong>Read more</strong> about querying from the command line</a>.</em></p>
+					<a href="#usage-within-application" id="usage-within-application" style="color: inherit; text-decoration: none;">
+						<h3>Usage within application</h3>
+					</a>
+					<p>This engine can be used in JavaScript/TypeScript applications as follows:</p>
+					<pre><code class="language-javascript"><span class="hljs-keyword">const</span> newEngine = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@comunica/actor-init-sparql-amf&#x27;</span>).newEngine;
+<span class="hljs-keyword">const</span> myEngine = newEngine();
+
+<span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> myEngine.query(<span class="hljs-string">`
+  SELECT * WHERE {
+      ?s ?p ?o
+  }`</span>, {
+  <span class="hljs-attr">sources</span>: [<span class="hljs-string">&#x27;http://localhost:3000/dataset&#x27;</span>],
+});
+
+<span class="hljs-comment">// Consume results as a stream (best performance)</span>
+result.bindingsStream.on(<span class="hljs-string">&#x27;data&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">binding</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(binding.get(<span class="hljs-string">&#x27;?s&#x27;</span>).value);
+    <span class="hljs-built_in">console</span>.log(binding.get(<span class="hljs-string">&#x27;?s&#x27;</span>).termType);
+
+    <span class="hljs-built_in">console</span>.log(binding.get(<span class="hljs-string">&#x27;?p&#x27;</span>).value);
+
+    <span class="hljs-built_in">console</span>.log(binding.get(<span class="hljs-string">&#x27;?o&#x27;</span>).value);
+});
+
+<span class="hljs-comment">// Consume results as an array (easier)</span>
+<span class="hljs-keyword">const</span> bindings = <span class="hljs-keyword">await</span> result.bindings();
+<span class="hljs-built_in">console</span>.log(bindings[<span class="hljs-number">0</span>].get(<span class="hljs-string">&#x27;?s&#x27;</span>).value);
+<span class="hljs-built_in">console</span>.log(bindings[<span class="hljs-number">0</span>].get(<span class="hljs-string">&#x27;?s&#x27;</span>).termType);</code></pre>
+					<p><em><a href="https://comunica.dev/docs/query/getting_started/query_app/"><strong>Read more</strong> about querying an application</a>.</em></p>
+					<a href="#usage-as-a-sparql-endpoint" id="usage-as-a-sparql-endpoint" style="color: inherit; text-decoration: none;">
+						<h3>Usage as a SPARQL endpoint</h3>
+					</a>
+					<p>Start a webservice exposing <a href="http://localhost:3000/dataset">http://localhost:3000/dataset</a> via the SPARQL protocol, i.e., a <em>SPARQL endpoint</em>.</p>
+					<pre><code class="language-bash">$ comunica-sparql-amf-http https://www.rubensworks.net/</code></pre>
+					<p>Show the help with all options:</p>
+					<pre><code class="language-bash">$ comunica-sparql-amf-http --<span class="hljs-built_in">help</span></code></pre>
+					<p>The SPARQL endpoint can only be started dynamically.
+					An alternative config file can be passed via the <code>COMUNICA_CONFIG</code> environment variable.</p>
+					<p>Use <code>bin/http.js</code> when running in the Comunica monorepo development environment.</p>
+					<p><em><a href="https://comunica.dev/docs/query/getting_started/setup_endpoint/"><strong>Read more</strong> about setting up a SPARQL endpoint</a>.</em></p>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -98,6 +142,12 @@
 							<h3>References</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="actor_init_sparql_amf.html#newengine" class="tsd-kind-icon">new<wbr>Engine</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported"><a href="actor_init_sparql_amf.html#defaultconfigpath" class="tsd-kind-icon">default<wbr>Config<wbr>Path</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -118,6 +168,19 @@
 					Re-exports <a href="actor_init_sparql_amf.html#newengine-1">newEngine</a>
 				</section>
 			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+					<a name="defaultconfigpath" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> default<wbr>Config<wbr>Path</h3>
+					<div class="tsd-signature tsd-kind-icon">default<wbr>Config<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#x60;${__dirname}/../config/config-default.json&#x60;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/4b3eb8b/packages/actor-init-sparql-amf/bin/http.ts#L4">packages/actor-init-sparql-amf/bin/http.ts:4</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
@@ -130,7 +193,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/1e10ea1/packages/actor-init-sparql-amf/index-browser.ts#L7">packages/actor-init-sparql-amf/index-browser.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/4b3eb8b/packages/actor-init-sparql-amf/index-browser.ts#L7">packages/actor-init-sparql-amf/index-browser.ts:7</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -153,7 +216,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/1e10ea1/packages/actor-init-sparql-amf/index.ts#L11">packages/actor-init-sparql-amf/index.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/4b3eb8b/packages/actor-init-sparql-amf/index.ts#L12">packages/actor-init-sparql-amf/index.ts:12</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -219,6 +282,9 @@
 							<li class=" tsd-kind-reference tsd-parent-kind-module">
 								<a href="actor_init_sparql_amf.html#newengine" class="tsd-kind-icon">new<wbr>Engine</a>
 							</li>
+							<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
+								<a href="actor_init_sparql_amf.html#defaultconfigpath" class="tsd-kind-icon">default<wbr>Config<wbr>Path</a>
+							</li>
 							<li class=" tsd-kind-function tsd-parent-kind-module">
 								<a href="actor_init_sparql_amf.html#newengine-1" class="tsd-kind-icon">new<wbr>Engine</a>
 							</li>
@@ -260,6 +326,7 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 			</ul>
 			<ul class="tsd-legend">
@@ -276,6 +343,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
