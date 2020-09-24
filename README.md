@@ -14,12 +14,10 @@
 <a href="https://gitter.im/comunica/Lobby"><img src="https://badges.gitter.im/comunica.png" alt="Gitter chat"></a>
 </p>
 
-**[Learn more about Comunica on our website](https://comunica.dev/).**
+**[Learn more about this Comunica AMF functionality on our website](https://comunica.dev/research/amf/).**
 
 This is a monorepo that contains packages for allowing [Comunica](https://github.com/comunica/comunica) to handle [approximate membership functions](https://comunica.github.io/Article-SSWS2020-AMF/).
 If you want to _use_ an AMF-enabled Comunica engine, have a look at [Comunica SPARQL AMF](https://github.com/comunica/comunica-feature-amf/tree/master/packages/actor-init-sparql-amf).
-
-This can be tested using [the `feature-handlers-amf-2` branch in the LDF Server](https://github.com/LinkedDataFragments/Server.js/tree/feature-handlers-amf-2).
 
 Concretely, this monorepo adds AMF support to Comunica using the following packages:
 * [RDF Membership Filter Bus](https://github.com/comunica/comunica-feature-amf/tree/master/packages/bus-rdf-membership-filter): A bus for actors that can construct approximate membership filters.
