@@ -62,7 +62,7 @@ export class ActorQueryOperationBgpMembershipFilter extends ActorQueryOperationT
           for (const { filter, variable } of metadata.approximateMembershipFilters) {
             const term = triplePattern[this.termUriMapper[variable]];
             if (term.termType !== 'Variable' && !await filter.filter(term, context)) {
-              const error = new Error('`True negative for BGP AMF`');
+              const error = new Error('True negative for BGP AMF');
               (<any> error).triplePattern = triplePattern;
               throw error;
             }
@@ -70,7 +70,7 @@ export class ActorQueryOperationBgpMembershipFilter extends ActorQueryOperationT
         }
       }));
     } catch (error: unknown) {
-      this.logInfo(context, (<Error> error).message, { triplePattern: (<any> error).triplePattern });
+      this.logInfo(context, (<Error> error).message, () => ({ triplePattern: (<any> error).triplePattern }));
       return <IActorQueryOperationOutputBindings> {
         bindingsStream: new ArrayIterator([], { autoStart: false }),
         metadata: () => Promise.resolve({ totalItems: 0 }),

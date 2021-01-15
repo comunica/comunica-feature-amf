@@ -50,7 +50,7 @@
     "engine-default.js"
   ],
   "dependencies": {
-    "@comunica/actor-init-sparql": "^1.16.2",
+    "@comunica/actor-init-sparql": "^1.19.0",
     "@comunica/actor-query-operation-bgp-membership-filter": "^1.0.0",
     "@comunica/actor-query-operation-bgp-membership-filter-combined": "^1.0.0",
     "@comunica/actor-query-operation-quadpattern-membership-filter": "^1.0.0",
@@ -58,8 +58,8 @@
     "@comunica/actor-rdf-membership-filter-gcs": "^1.0.0",
     "@comunica/actor-rdf-metadata-extract-membership": "^1.0.0",
     "@comunica/bus-rdf-membership-filter": "^1.0.0",
-    "@comunica/runner": "^1.16.0",
-    "@comunica/runner-cli": "^1.6.0"
+    "@comunica/runner": "^1.19.0",
+    "@comunica/runner-cli": "^1.19.0"
   },
   "scripts": {
     "build": "node \"../../node_modules/typescript/bin/tsc\"",

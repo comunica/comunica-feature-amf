@@ -4,7 +4,7 @@ import {
   Bindings,
   KEY_CONTEXT_PATTERN_PARENTMETADATA,
 } from '@comunica/bus-query-operation';
-import { ActionContext, Bus } from '@comunica/core';
+import { ActionContext, Bus, KEY_CONTEXT_LOG } from '@comunica/core';
 import { literal, namedNode, variable } from '@rdfjs/data-model';
 import { ArrayIterator } from 'asynciterator';
 import { ActorQueryOperationQuadpatternMembershipFilter } from '../lib/ActorQueryOperationQuadpatternMembershipFilter';
@@ -226,13 +226,16 @@ describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
       });
     });
 
-    it('should run for all-non-matching filters', () => {
+    it('should run for all-non-matching filters', async() => {
       const operation = {
         graph: namedNode('g'),
         object: namedNode('o'),
         predicate: namedNode('p'),
         subject: namedNode('s'),
         type: 'pattern',
+      };
+      const logger = {
+        info: jest.fn(),
       };
       const context = ActionContext({
         [KEY_CONTEXT_PATTERN_PARENTMETADATA]: {
@@ -245,11 +248,16 @@ describe('ActorQueryOperationQuadpatternMembershipFilter', () => {
             },
           ],
         },
+        [KEY_CONTEXT_LOG]: logger,
       });
-      return actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
+      await actor.run({ operation, context }).then(async(output: IActorQueryOperationOutputBindings) => {
         expect(output.variables).toEqual([]);
         expect(await (<any> output.metadata)()).toEqual({ totalItems: 0 });
         expect(await arrayifyStream(output.bindingsStream)).toEqual([]);
+      });
+      expect(logger.info).toHaveBeenCalledWith('True negative for AMF', {
+        actor: 'actor',
+        pattern: expect.anything(),
       });
     });
 

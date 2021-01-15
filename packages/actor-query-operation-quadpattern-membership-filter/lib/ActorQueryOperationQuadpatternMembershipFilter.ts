@@ -59,7 +59,7 @@ export class ActorQueryOperationQuadpatternMembershipFilter extends ActorQueryOp
     for (const { filter, variable } of filters) {
       const term = pattern[this.termUriMapper[variable]];
       if (!await filter.filter(term, context)) {
-        this.logInfo(context, `True negative for AMF`, { pattern });
+        this.logInfo(context, `True negative for AMF`, () => ({ pattern }));
         return <IActorQueryOperationOutputBindings> {
           bindingsStream: new ArrayIterator([], { autoStart: false }),
           metadata: () => Promise.resolve({ totalItems: 0 }),
