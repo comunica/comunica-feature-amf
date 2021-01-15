@@ -1,6 +1,6 @@
 {
   "name": "@comunica/actor-query-operation-bgp-membership-filter-combined",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A bgp-membership-filter-combined query-operation actor",
   "lsd:module": "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-query-operation-bgp-membership-filter-combined",
   "lsd:components": "components/components.jsonld",

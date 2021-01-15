@@ -1,6 +1,6 @@
 {
   "name": "@comunica/actor-init-sparql-amf",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Comunica engine for SPARQL query evaluation takes applies approximate membership functions",
   "lsd:importPaths": {
     "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/actor-init-sparql-amf/^1.0.0/config/": "config/"
@@ -51,9 +51,9 @@
   ],
   "dependencies": {
     "@comunica/actor-init-sparql": "^1.19.0",
-    "@comunica/actor-query-operation-bgp-membership-filter": "^1.0.0",
-    "@comunica/actor-query-operation-bgp-membership-filter-combined": "^1.0.0",
-    "@comunica/actor-query-operation-quadpattern-membership-filter": "^1.0.0",
+    "@comunica/actor-query-operation-bgp-membership-filter": "^1.1.0",
+    "@comunica/actor-query-operation-bgp-membership-filter-combined": "^1.1.0",
+    "@comunica/actor-query-operation-quadpattern-membership-filter": "^1.1.0",
     "@comunica/actor-rdf-membership-filter-bloom": "^1.0.0",
     "@comunica/actor-rdf-membership-filter-gcs": "^1.0.0",
     "@comunica/actor-rdf-metadata-extract-membership": "^1.0.0",
