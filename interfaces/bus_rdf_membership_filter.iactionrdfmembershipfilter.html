@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IApproximateMembershipFilter | Comunica AMF</title>
+	<title>IActionRdfMembershipFilter | Comunica AMF</title>
 	<meta name="description" content="Documentation for Comunica AMF">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -59,37 +59,27 @@
 					<a href="../modules/bus_rdf_membership_filter.html">bus-rdf-membership-filter</a>
 				</li>
 				<li>
-					<a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html">IApproximateMembershipFilter</a>
+					<a href="bus_rdf_membership_filter.iactionrdfmembershipfilter.html">IActionRdfMembershipFilter</a>
 				</li>
 			</ul>
-			<h1>Interface IApproximateMembershipFilter</h1>
+			<h1>Interface IActionRdfMembershipFilter</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A filter that can test approximate memberships.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IApproximateMembershipFilter</span>
+						<span class="tsd-signature-type">IAction</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">IActionRdfMembershipFilter</span>
+							</li>
+						</ul>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implemented by</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../classes/actor_rdf_membership_filter_bloom.approximatemembershipfilterbloom-1.html" class="tsd-signature-type">ApproximateMembershipFilterBloom</a></li>
-					<li><a href="../classes/actor_rdf_membership_filter_gcs.approximatemembershipfiltergcs.html" class="tsd-signature-type">ApproximateMembershipFilterGcs</a></li>
-					<li><a href="../classes/actor_rdf_metadata_extract_membership.approximatemembershipfilterlazy.html" class="tsd-signature-type">ApproximateMembershipFilterLazy</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -99,8 +89,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html#filter" class="tsd-kind-icon">filter</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html#prefetch" class="tsd-kind-icon">prefetch</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="bus_rdf_membership_filter.iactionrdfmembershipfilter.html#context" class="tsd-kind-icon">context</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bus_rdf_membership_filter.iactionrdfmembershipfilter.html#properties" class="tsd-kind-icon">properties</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="bus_rdf_membership_filter.iactionrdfmembershipfilter.html#typeuri" class="tsd-kind-icon">type<wbr>Uri</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,78 +99,58 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="filter" class="tsd-anchor"></a>
-					<h3>filter</h3>
-					<div class="tsd-signature tsd-kind-icon">filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>term<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RDF.Term</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActionContext</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="context" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> context</h3>
+					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ActionContext</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="bus_rdf_membership_filter.iactionrdfmembershipfilter.html">IActionRdfMembershipFilter</a>.<a href="bus_rdf_membership_filter.iactionrdfmembershipfilter.html#context">context</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/21f6ec7/packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts#L48">packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts:48</a></li>
+							<li>Defined in node_modules/@comunica/core/lib/Actor.d.ts:137</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>An approximate filter function.</p>
+							<p>The optional input context that is passed through by actors.</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>An RDF Term.</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The action context.</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>True if the term is probably in the dataset, false if the term is definitely not in the dataset.</p>
-							</dd>
-						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="properties" class="tsd-anchor"></a>
+					<h3>properties</h3>
+					<div class="tsd-signature tsd-kind-icon">properties<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/e1154f1/packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts#L28">packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts:28</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The properties of the filter to create.</p>
+						</div>
 					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
-							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>term<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RDF.Term</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActionContext</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>term: <span class="tsd-signature-type">RDF.Term</span></h5>
-											</li>
-											<li>
-												<h5>context: <span class="tsd-signature-type">ActionContext</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
-									</li>
-								</ul>
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>propertyUri: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
 							</li>
 						</ul>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="prefetch" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> prefetch</h3>
-					<div class="tsd-signature tsd-kind-icon">prefetch<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActionContext</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></div>
+					<a name="typeuri" class="tsd-anchor"></a>
+					<h3>type<wbr>Uri</h3>
+					<div class="tsd-signature tsd-kind-icon">type<wbr>Uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/21f6ec7/packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts#L56">packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts:56</a></li>
+							<li>Defined in <a href="https://github.com/comunica/comunica-feature-amf/blob/e1154f1/packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts#L24">packages/bus-rdf-membership-filter/lib/ActorRdfMembershipFilter.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Calling this method will make sure that this filter will become fully loaded.
-							This is useful when the filter is lazily constructed.</p>
+							<p>A URI identifying the type of filter to create.</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The action context.</p>
-							</dd>
-							<dt>returns</dt>
-							<dd><p>A promise resolving when the filter has been fully loaded.</p>
-							</dd>
-						</dl>
 					</div>
 				</section>
 			</section>
@@ -244,49 +215,34 @@
 					<li class="current tsd-kind-module">
 						<a href="../modules/bus_rdf_membership_filter.html" class="tsd-kind-icon">bus-<wbr>rdf-<wbr>membership-<wbr>filter</a>
 						<ul>
-							<li class=" tsd-kind-reference tsd-parent-kind-module">
-								<a href="../modules/bus_rdf_membership_filter.html#actorrdfmembershipfilter" class="tsd-kind-icon">Actor<wbr>Rdf<wbr>Membership<wbr>Filter</a>
-							</li>
-							<li class=" tsd-kind-reference tsd-parent-kind-module">
-								<a href="../modules/bus_rdf_membership_filter.html#actorrdfmembershipfiltertyped" class="tsd-kind-icon">Actor<wbr>Rdf<wbr>Membership<wbr>Filter<wbr>Typed</a>
-							</li>
-							<li class=" tsd-kind-reference tsd-parent-kind-module">
-								<a href="../modules/bus_rdf_membership_filter.html#iactionrdfmembershipfilter" class="tsd-kind-icon">IAction<wbr>Rdf<wbr>Membership<wbr>Filter</a>
-							</li>
-							<li class=" tsd-kind-reference tsd-parent-kind-module">
-								<a href="../modules/bus_rdf_membership_filter.html#iactorrdfmembershipfilteroutput" class="tsd-kind-icon">IActor<wbr>Rdf<wbr>Membership<wbr>Filter<wbr>Output</a>
-							</li>
-							<li class=" tsd-kind-reference tsd-parent-kind-module">
-								<a href="../modules/bus_rdf_membership_filter.html#iactorrdfmembershipfiltertypedargs" class="tsd-kind-icon">IActor<wbr>Rdf<wbr>Membership<wbr>Filter<wbr>Typed<wbr>Args</a>
-							</li>
-							<li class=" tsd-kind-reference tsd-parent-kind-module">
-								<a href="../modules/bus_rdf_membership_filter.html#iapproximatemembershipfilter" class="tsd-kind-icon">IApproximate<wbr>Membership<wbr>Filter</a>
+							<li class=" tsd-kind-class tsd-parent-kind-module">
+								<a href="../classes/bus_rdf_membership_filter.actorrdfmembershipfilter.html" class="tsd-kind-icon">Actor<wbr>Rdf<wbr>Membership<wbr>Filter</a>
 							</li>
 							<li class=" tsd-kind-class tsd-parent-kind-module">
-								<a href="../classes/bus_rdf_membership_filter.actorrdfmembershipfilter-1.html" class="tsd-kind-icon">Actor<wbr>Rdf<wbr>Membership<wbr>Filter</a>
-							</li>
-							<li class=" tsd-kind-class tsd-parent-kind-module">
-								<a href="../classes/bus_rdf_membership_filter.actorrdfmembershipfiltertyped-1.html" class="tsd-kind-icon">Actor<wbr>Rdf<wbr>Membership<wbr>Filter<wbr>Typed</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-module">
-								<a href="bus_rdf_membership_filter.iactionrdfmembershipfilter-1.html" class="tsd-kind-icon">IAction<wbr>Rdf<wbr>Membership<wbr>Filter</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-module">
-								<a href="bus_rdf_membership_filter.iactorrdfmembershipfilteroutput-1.html" class="tsd-kind-icon">IActor<wbr>Rdf<wbr>Membership<wbr>Filter<wbr>Output</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-module">
-								<a href="bus_rdf_membership_filter.iactorrdfmembershipfiltertypedargs-1.html" class="tsd-kind-icon">IActor<wbr>Rdf<wbr>Membership<wbr>Filter<wbr>Typed<wbr>Args</a>
+								<a href="../classes/bus_rdf_membership_filter.actorrdfmembershipfiltertyped.html" class="tsd-kind-icon">Actor<wbr>Rdf<wbr>Membership<wbr>Filter<wbr>Typed</a>
 							</li>
 							<li class="current tsd-kind-interface tsd-parent-kind-module">
-								<a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html" class="tsd-kind-icon">IApproximate<wbr>Membership<wbr>Filter</a>
+								<a href="bus_rdf_membership_filter.iactionrdfmembershipfilter.html" class="tsd-kind-icon">IAction<wbr>Rdf<wbr>Membership<wbr>Filter</a>
 								<ul>
-									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html#filter" class="tsd-kind-icon">filter</a>
+									<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+										<a href="bus_rdf_membership_filter.iactionrdfmembershipfilter.html#context" class="tsd-kind-icon">context</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="bus_rdf_membership_filter.iapproximatemembershipfilter-1.html#prefetch" class="tsd-kind-icon">prefetch</a>
+										<a href="bus_rdf_membership_filter.iactionrdfmembershipfilter.html#properties" class="tsd-kind-icon">properties</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="bus_rdf_membership_filter.iactionrdfmembershipfilter.html#typeuri" class="tsd-kind-icon">type<wbr>Uri</a>
 									</li>
 								</ul>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-module">
+								<a href="bus_rdf_membership_filter.iactorrdfmembershipfilteroutput.html" class="tsd-kind-icon">IActor<wbr>Rdf<wbr>Membership<wbr>Filter<wbr>Output</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-module">
+								<a href="bus_rdf_membership_filter.iactorrdfmembershipfiltertypedargs.html" class="tsd-kind-icon">IActor<wbr>Rdf<wbr>Membership<wbr>Filter<wbr>Typed<wbr>Args</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-module">
+								<a href="bus_rdf_membership_filter.iapproximatemembershipfilter.html" class="tsd-kind-icon">IApproximate<wbr>Membership<wbr>Filter</a>
 							</li>
 						</ul>
 					</li>
