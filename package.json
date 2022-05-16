@@ -13,7 +13,7 @@
     "@comunica/bus-rdf-dereference": "^1.19.0",
     "@comunica/bus-rdf-metadata-extract": "^1.19.0",
     "@comunica/bus-rdf-membership-filter": "^1.0.0",
-    "@rdfjs/data-model": "^1.1.1",
+    "@rdfjs/data-model": "^2.0.0",
     "@types/jest": "^26.0.0",
     "@types/node": "^13.1.7",
     "@types/bloem": "^0.2.0",
