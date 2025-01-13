@@ -8572,7 +8572,7 @@ rdf-string@^2.0.0:
   dependencies:
     rdf-data-factory "^2.0.0"
 
-rdf-terms@^1.5.1, rdf-terms@^1.6.2:
+rdf-terms@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/rdf-terms/-/rdf-terms-1.6.2.tgz#e31ad9023e0ee163dafa3dd847410c61556d0d57"
   integrity sha512-dASpdYHYLEwzN9iSymJie1WUj6VHXy1By8Am4g2rJlhTfVvNitsJpDY+A3X2QehlGhCaWjHMzXS4q/JKNPI80A==

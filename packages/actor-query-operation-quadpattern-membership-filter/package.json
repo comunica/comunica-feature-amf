@@ -40,7 +40,7 @@
   ],
   "dependencies": {
     "asynciterator": "^3.0.2",
-    "rdf-terms": "^1.5.1"
+    "rdf-terms": "^2.0.0"
   },
   "peerDependencies": {
     "@comunica/bus-query-operation": "^1.19.0",
