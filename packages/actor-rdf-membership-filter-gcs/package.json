@@ -41,7 +41,7 @@
   "dependencies": {
     "golombcodedsets": "^0.0.1",
     "murmurhash": "^0.0.2",
-    "rdf-string": "^1.4.2"
+    "rdf-string": "^2.0.0"
   },
   "peerDependencies": {
     "@comunica/bus-rdf-membership-filter": "^1.0.0",

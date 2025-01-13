@@ -39,7 +39,7 @@
     "index.js"
   ],
   "dependencies": {
-    "rdf-string": "^1.4.2"
+    "rdf-string": "^2.0.0"
   },
   "peerDependencies": {
     "@comunica/bus-rdf-dereference": "^1.15.0",
