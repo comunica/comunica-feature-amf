@@ -73,6 +73,6 @@
     "validate": "npm ls"
   },
   "resolutions": {
-    "@types/rdf-js": "3.0.3"
+    "@types/rdf-js": "4.0.1"
   }
 }
