@@ -14,7 +14,7 @@
     "@comunica/bus-rdf-metadata-extract": "^1.19.0",
     "@comunica/bus-rdf-membership-filter": "^1.0.0",
     "@rdfjs/data-model": "^2.0.0",
-    "@types/jest": "^29.0.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.0.0",
     "@types/bloem": "^0.2.0",
     "@types/murmurhash": "^0.0.1",
